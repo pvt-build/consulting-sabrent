@@ -1,0 +1,795 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Sabrent · Panel Consultoría DTC</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap');
+
+:root{
+  --bg:#F5F8FC;--surf:#FFFFFF;
+  --beige:#EDF2F8;--sand:#D5DEE9;
+  --warm:#0B6CF0;--brown:#0A55BE;
+  --dark:#1A1A1A;--ink:#18202E;
+  --teal:#3EB489;--teal-lt:#EAF7F2;--teal-dk:#1E8A5C;
+  --gold:#E8A237;--gold-lt:#FDF4E3;--gold-dk:#A06810;
+  --red:#E2503A;--red-lt:#FDF0ED;--red-dk:#A02A18;
+  --green:#3EB489;--green-lt:#EAF7F2;--green-dk:#1E8A5C;
+  --orange:#D4650E;--orange-lt:#FEF0E5;--orange-dk:#8A3A06;
+  --blue:#2A5BAD;--blue-lt:#EAF0FB;--blue-dk:#1A3A7A;
+  --grey:#74808F;--border:#DFE6EE;--wa:#25D366;
+  --violet:#0B6CF0;--violet-lt:#E7F0FE;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;overflow-x:clip;max-width:100%}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--ink);font-size:14px;line-height:1.6;min-height:100vh;padding-bottom:80px;overflow-x:clip;max-width:100%;position:relative}
+
+/* TOPBAR */
+.topbar{position:sticky;top:0;z-index:300;background:var(--dark);display:flex;align-items:center;padding:0 16px;height:52px;box-shadow:0 2px 12px rgba(0,0,0,.2);border-bottom:1px solid rgba(255,255,255,.07)}
+.brand{display:flex;align-items:center;gap:7px;font-size:14px;font-weight:600;color:#fff;white-space:nowrap;margin-right:14px;flex-shrink:0}
+.brand-dot{width:7px;height:7px;border-radius:50%;background:var(--warm);flex-shrink:0}
+.tabs-desktop{display:flex;align-items:stretch;flex:1;overflow-x:auto;scrollbar-width:none}
+.tabs-desktop::-webkit-scrollbar{display:none}
+.tab{display:flex;align-items:center;gap:5px;padding:0 12px;height:52px;font-size:11.5px;font-weight:500;color:rgba(255,255,255,.38);cursor:pointer;white-space:nowrap;flex-shrink:0;border-bottom:2px solid transparent;transition:color .15s,border-color .15s,background .15s;text-decoration:none;user-select:none}
+.tab:hover{color:rgba(255,255,255,.72);background:rgba(255,255,255,.04)}
+.tab.on{color:#fff;border-bottom-color:var(--warm);background:rgba(11,108,240,.08)}
+.mob-btn{display:none;align-items:center;justify-content:center;width:36px;height:36px;cursor:pointer;color:rgba(255,255,255,.7);border:1px solid rgba(255,255,255,.15);border-radius:7px;background:rgba(255,255,255,.06);flex-shrink:0}
+.mob-drop{display:none;position:absolute;top:52px;left:0;right:0;width:100%;background:var(--dark);z-index:299;border-bottom:1px solid rgba(255,255,255,.1);box-shadow:0 8px 24px rgba(0,0,0,.3);max-height:80vh;overflow-y:auto}
+.mob-drop.open{display:block}
+.mob-row{display:flex;align-items:center;gap:10px;padding:14px 20px;font-size:14px;font-weight:500;color:rgba(255,255,255,.55);cursor:pointer;border-bottom:0.5px solid rgba(255,255,255,.07);text-decoration:none;transition:background .15s,color .15s}
+.mob-row:hover,.mob-row.on{background:rgba(11,108,240,.12);color:#fff}
+.mob-row.on{border-left:3px solid var(--warm)}
+.mob-em{font-size:18px;width:24px;text-align:center}
+.topbar-right{display:flex;align-items:center;gap:8px;margin-left:auto;flex-shrink:0}
+.ext-bar{display:flex;align-items:center;flex-shrink:0;border-left:1px solid rgba(255,255,255,.1);margin-left:4px}
+.ext-btn{display:flex;align-items:center;gap:6px;padding:0 12px;height:52px;font-size:12px;font-weight:500;color:rgba(255,255,255,.45);cursor:pointer;text-decoration:none;border-right:1px solid rgba(255,255,255,.08);transition:color .15s,background .15s;white-space:nowrap}
+.ext-btn svg{width:16px;height:16px;flex-shrink:0}
+.ext-btn:hover{color:rgba(255,255,255,.8);background:rgba(255,255,255,.05)}
+.ext-btn.locked{opacity:.2;cursor:not-allowed;pointer-events:none}
+
+/* PAGES */
+.page{display:none;max-width:900px;margin:0 auto;padding:24px 20px 40px}
+.page.on{display:block}
+.slbl{font-family:'DM Mono',monospace;font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--warm);margin-bottom:8px;margin-top:24px}
+.slbl:first-child{margin-top:0}
+
+/* CHIPS */
+.chips-row{display:flex;gap:4px;margin-bottom:22px;flex-wrap:wrap}
+.sch{width:40px;height:26px;border-radius:5px;display:flex;align-items:center;justify-content:center;font-family:'DM Mono',monospace;font-size:10px;font-weight:500;cursor:default;flex-shrink:0}
+.sch.done{background:var(--teal);color:#fff}
+.sch.now{background:var(--gold);color:#fff;box-shadow:0 0 0 3px rgba(232,162,55,.2)}
+.sch.todo{background:var(--surf);color:var(--grey);border:0.5px solid var(--border)}
+
+/* BADGES */
+.bdg{display:inline-flex;align-items:center;font-size:10px;font-weight:500;padding:2px 8px;border-radius:20px;white-space:nowrap}
+.bdg.teal{background:var(--teal-lt);color:var(--teal-dk)}
+.bdg.amber{background:var(--gold-lt);color:var(--gold-dk)}
+.bdg.red{background:var(--red-lt);color:var(--red-dk)}
+.bdg.green{background:var(--green-lt);color:var(--teal-dk)}
+.bdg.grey{background:var(--beige);color:var(--grey);border:0.5px solid var(--border)}
+.bdg.blue{background:var(--blue-lt);color:var(--blue-dk)}
+.bdg.orange{background:var(--orange-lt);color:var(--orange-dk)}
+.bdg.violet{background:var(--violet-lt);color:var(--violet)}
+.bdg-row{display:flex;gap:5px;flex-wrap:wrap;margin-top:5px}
+
+/* OV CARDS */
+.ov-row1{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:10px}
+.ov-row2{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:10px}
+.ov-card{background:var(--surf);border:0.5px solid var(--border);border-radius:10px;padding:13px 15px}
+.ov-card.dark{background:var(--dark);border-color:transparent}
+.ov-lbl{font-size:10.5px;color:var(--grey);margin-bottom:5px}
+.ov-card.dark .ov-lbl{color:rgba(255,255,255,.4)}
+.ov-num{font-size:24px;font-weight:500;line-height:1;margin-bottom:4px}
+.ov-num.teal{color:var(--teal)}.ov-num.amber{color:var(--gold)}.ov-num.red{color:var(--red)}.ov-num.green{color:var(--teal)}.ov-num.violet{color:var(--violet)}
+.ov-sub{font-size:10.5px;color:var(--grey);line-height:1.4}
+
+/* CHANNEL SPLIT */
+.ch-split{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:22px}
+.ch-card{background:var(--surf);border:0.5px solid var(--border);border-radius:12px;padding:16px 18px}
+.ch-card.canal-a{border-top:3px solid var(--red)}
+.ch-card.canal-b{border-top:3px solid var(--teal)}
+.ch-head{font-size:12px;font-weight:600;color:var(--dark);margin-bottom:10px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:6px}
+.ch-row{display:flex;justify-content:space-between;align-items:center;padding:6px 0;border-bottom:0.5px solid var(--border);font-size:12px}
+.ch-row:last-child{border-bottom:none;padding-bottom:0}
+.ch-k{color:var(--grey)}
+.ch-v{font-weight:600;color:var(--dark)}
+.ch-v.red{color:var(--red)}.ch-v.green{color:var(--teal)}.ch-v.amber{color:var(--gold)}
+
+/* PROBLEM */
+.problem-card{background:var(--dark);border-radius:12px;padding:18px 20px;margin-bottom:20px;display:flex;align-items:flex-start;gap:14px}
+.prob-icon{font-size:26px;flex-shrink:0;margin-top:2px}
+.prob-title{font-size:14px;font-weight:600;color:#fff;margin-bottom:5px}
+.prob-text{font-size:12px;color:rgba(255,255,255,.55);line-height:1.65}
+.prob-text strong{color:rgba(255,255,255,.85)}
+.prob-stats{display:flex;gap:16px;margin-top:12px;flex-wrap:wrap}
+.prob-sv{font-size:20px;font-weight:500;color:var(--teal);line-height:1}
+.prob-sl{font-size:9px;color:rgba(255,255,255,.35);font-family:'DM Mono',monospace;letter-spacing:.06em;text-transform:uppercase;margin-top:2px}
+
+/* BOTTLENECKS */
+.bn-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:9px;margin-bottom:20px}
+.bn-card{background:var(--surf);border:0.5px solid var(--border);border-radius:10px;padding:13px 15px;border-left:3px solid var(--border)}
+.bn-card.c{border-left-color:var(--red)}.bn-card.w{border-left-color:var(--orange)}.bn-card.i{border-left-color:var(--teal)}
+.bn-head{display:flex;align-items:center;gap:7px;margin-bottom:5px}
+.bn-n{width:19px;height:19px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:600;color:#fff;flex-shrink:0}
+.bn-n.c{background:var(--red)}.bn-n.w{background:var(--orange)}.bn-n.i{background:var(--teal)}
+.bn-title{font-size:12px;font-weight:600;color:var(--dark)}
+.bn-text{font-size:11.5px;color:var(--grey);line-height:1.6;margin-bottom:5px}
+.bn-imp{font-size:10.5px;font-weight:500;font-family:'DM Mono',monospace}
+.bn-imp.c{color:var(--red-dk)}.bn-imp.w{color:var(--orange-dk)}.bn-imp.i{color:var(--teal-dk)}
+
+/* STACK */
+.stack-wrap{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:20px}
+.sp{display:flex;align-items:center;gap:6px;background:var(--surf);border:0.5px solid var(--border);border-radius:7px;padding:6px 10px;font-size:11.5px;color:var(--ink)}
+.sd{width:6px;height:6px;border-radius:50%;flex-shrink:0}
+.sd.on{background:var(--green)}.sd.warn{background:var(--orange)}.sd.off{background:var(--sand)}
+
+/* ROADMAP */
+.rm-track-wrap{background:var(--surf);border:0.5px solid var(--border);border-radius:12px;padding:20px;margin-bottom:16px;overflow-x:auto}
+.rm-track{display:flex;align-items:flex-start;min-width:660px;position:relative}
+.rm-track::before{content:'';position:absolute;top:16px;left:17px;right:17px;height:2px;background:var(--border);z-index:0}
+.rm-node{display:flex;flex-direction:column;align-items:center;flex:1;min-width:52px;position:relative;z-index:1}
+.rm-dot{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'DM Mono',monospace;font-size:10px;font-weight:500;margin-bottom:7px;border:2px solid transparent;flex-shrink:0}
+.rm-dot.done{background:var(--teal);border-color:var(--teal);color:#fff}
+.rm-dot.now{background:var(--gold);border-color:var(--gold);color:#fff;box-shadow:0 0 0 5px rgba(232,162,55,.18)}
+.rm-dot.future{background:var(--bg);border-color:var(--border);color:var(--grey)}
+.rm-lbl{font-size:9px;font-weight:600;color:var(--ink);text-align:center;line-height:1.3;margin-bottom:2px;max-width:60px}
+.rm-lbl.mt{color:var(--grey);font-weight:400}
+.rm-sub{font-family:'DM Mono',monospace;font-size:8px;color:var(--grey);text-align:center}
+
+/* PHASE CARDS */
+.phase-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:18px}
+.phase-card{background:var(--surf);border:0.5px solid var(--border);border-radius:12px;padding:15px 16px;border-top:3px solid var(--sand)}
+.phase-card.m1{border-top-color:var(--teal)}
+.phase-card.m2{border-top-color:var(--gold)}
+.phase-card.m3{border-top-color:var(--violet)}
+.phase-hd{display:flex;align-items:center;justify-content:space-between;gap:6px;margin-bottom:8px;flex-wrap:wrap}
+.phase-tag{font-family:'DM Mono',monospace;font-size:10px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;color:var(--grey)}
+.phase-title{font-size:13.5px;font-weight:600;color:var(--dark);line-height:1.35;margin-bottom:6px}
+.phase-text{font-size:11.5px;color:var(--grey);line-height:1.6;margin-bottom:10px}
+.phase-tags{display:flex;flex-wrap:wrap;gap:4px}
+
+/* HOW */
+.rm-how{background:var(--dark);border-radius:12px;padding:18px 20px;margin-bottom:20px}
+.rm-how-row{display:flex;align-items:stretch;gap:0;flex-wrap:wrap}
+.rm-how-item{display:flex;align-items:flex-start;gap:10px;flex:1;min-width:160px;padding:0 16px}
+.rm-how-item:first-child{padding-left:0}
+.rm-how-item:last-child{padding-right:0}
+.rm-how-div{width:1px;background:rgba(255,255,255,.1);flex-shrink:0;align-self:stretch;margin:4px 0}
+.rm-how-icon{font-size:20px;flex-shrink:0;margin-top:2px}
+.rm-how-title{font-size:12px;font-weight:600;color:#fff;margin-bottom:2px}
+.rm-how-text{font-size:11px;color:rgba(255,255,255,.45);line-height:1.55}
+
+/* WEEK CARDS */
+.week-card{background:var(--surf);border:0.5px solid var(--border);border-radius:12px;padding:16px 20px;margin-bottom:10px;cursor:pointer;transition:box-shadow .2s;user-select:none}
+.week-card:hover{box-shadow:0 3px 16px rgba(0,0,0,.07)}
+.week-card.done{border-left:2px solid var(--teal)}
+.week-card.now{border-left:2px solid var(--gold);box-shadow:0 0 0 1px rgba(232,162,55,.2)}
+.week-card.future{opacity:.5}
+.week-hd{display:flex;align-items:flex-start;gap:10px}
+.week-info{flex:1}
+.week-title{font-size:13.5px;font-weight:600;color:var(--dark);line-height:1.3;margin-bottom:2px}
+.week-date{font-family:'DM Mono',monospace;font-size:9.5px;color:var(--grey)}
+.week-toggle{font-size:10.5px;color:var(--warm);font-weight:500;margin-top:8px;display:flex;align-items:center;gap:4px}
+.week-toggle-icon{transition:transform .2s;display:inline-block}
+.week-card.open .week-toggle-icon{transform:rotate(180deg)}
+.week-body{margin-top:10px;padding-top:10px;border-top:0.5px solid var(--border);display:none}
+.week-card.open .week-body{display:block}
+.week-chips{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:8px}
+.week-sec{font-size:10px;font-weight:600;color:var(--grey);text-transform:uppercase;letter-spacing:.08em;margin:8px 0 4px}
+.week-text{font-size:12px;color:var(--grey);line-height:1.65}
+.week-text strong{color:var(--ink);font-weight:600}
+.week-text ul{padding-left:16px;margin-top:4px}
+.week-text li{margin-bottom:3px}
+.check{color:var(--green);font-weight:600}
+.pend{color:var(--orange);font-weight:600}
+
+/* ENGINE QA */
+.qa-card{background:var(--surf);border:0.5px solid var(--border);border-radius:11px;padding:14px 16px;margin-bottom:8px;cursor:pointer;user-select:none;transition:box-shadow .15s}
+.qa-card:hover{box-shadow:0 2px 12px rgba(0,0,0,.06)}
+.qa-card.broken-q{border-left:3px solid var(--red)}
+.qa-hd{display:flex;align-items:center;gap:10px}
+.qa-n{width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'DM Mono',monospace;font-size:11px;font-weight:600;color:#fff;flex-shrink:0}
+.qa-title{font-size:14px;font-weight:600;color:var(--dark)}
+.qa-icon{font-size:11px;color:var(--grey);transition:transform .2s;flex-shrink:0;margin-left:8px}
+.qa-card.open .qa-icon{transform:rotate(180deg)}
+.qa-body{display:none;margin-top:10px;padding-top:10px;border-top:0.5px solid var(--border)}
+.qa-card.open .qa-body{display:block}
+.qa-body ul{padding-left:18px;margin:0}
+.qa-body li{font-size:12.5px;color:var(--grey);line-height:1.6;margin-bottom:6px}
+.qa-body li:last-child{margin-bottom:0}
+
+/* ENGINE TABLE */
+.eng-table{width:100%;border-collapse:collapse;background:var(--surf);border-radius:12px;overflow:hidden;border:0.5px solid var(--border);margin-bottom:20px}
+.eng-table thead{background:var(--dark)}
+.eng-table thead th{padding:10px 13px;text-align:left;font-family:'DM Mono',monospace;font-size:8.5px;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.35);font-weight:500}
+.eng-table tbody tr{border-bottom:0.5px solid var(--border);transition:background .12s}
+.eng-table tbody tr:last-child{border-bottom:none}
+.eng-table tbody tr:hover{background:var(--bg)}
+.eng-table tbody tr.broken{background:rgba(226,80,58,.025)}
+.eng-table td{padding:11px 13px;font-size:11.5px;vertical-align:top}
+.sdot{width:20px;height:20px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'DM Mono',monospace;font-size:8px;font-weight:500;color:#fff;flex-shrink:0}
+.sname{font-size:12.5px;font-weight:600;color:var(--dark)}
+.sgap{font-size:11px;color:var(--grey);line-height:1.5}
+
+/* TASKS */
+.tg-hd{font-size:12px;font-weight:600;color:var(--ink);margin:18px 0 9px;display:flex;align-items:center;gap:8px}
+.tg-hd::after{content:'';flex:1;height:0.5px;background:var(--border)}
+.task{display:flex;align-items:flex-start;gap:10px;background:var(--surf);border:0.5px solid var(--border);border-radius:9px;padding:10px 13px;margin-bottom:6px;transition:box-shadow .15s}
+.task:hover{box-shadow:0 2px 10px rgba(0,0,0,.05)}
+.task-ring{width:18px;height:18px;border-radius:50%;border:1.5px solid var(--border);flex-shrink:0;margin-top:2px}
+.task-body{flex:1;min-width:0}
+.task-title{font-size:12.5px;font-weight:500;color:var(--ink);margin-bottom:2px;line-height:1.35}
+.task-desc{font-size:11px;color:var(--grey);line-height:1.5}
+.task-note{margin-top:6px;padding:6px 9px;background:var(--beige);border-radius:5px;font-size:10.5px;color:var(--brown);line-height:1.5}
+
+/* ALERT */
+.alert-box{display:flex;gap:10px;padding:11px 14px;border-radius:9px;margin-bottom:10px;align-items:flex-start}
+.alert-box.info{background:var(--teal-lt);border:0.5px solid #A8DDD9}
+.alert-box.warn{background:var(--gold-lt);border:0.5px solid #F0D88A}
+.alert-box.red-bg{background:var(--red-lt);border:0.5px solid #F5BFBB}
+.alert-icon{font-size:15px;flex-shrink:0;margin-top:1px}
+.alert-title{font-size:12.5px;font-weight:600;color:var(--dark);margin-bottom:2px}
+.alert-text{font-size:11.5px;color:var(--grey);line-height:1.6}
+
+.rm-uc-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(165px,1fr));gap:8px;margin-top:14px}
+.rm-uc{background:var(--bg);border:0.5px solid var(--border);border-radius:9px;padding:12px 14px;opacity:.6}
+.rm-uc-num{font-family:'DM Mono',monospace;font-size:9px;color:var(--grey);margin-bottom:4px}
+.rm-uc-title{font-size:12px;font-weight:500;color:var(--ink);margin-bottom:5px;line-height:1.3}
+.rm-uc-chips{display:flex;flex-wrap:wrap;gap:3px}
+
+/* WA FAB */
+.wa-fab{position:fixed;bottom:22px;right:18px;z-index:400;display:flex;align-items:center;gap:8px;background:var(--wa);color:#fff;border-radius:50px;padding:11px 18px 11px 14px;font-size:13px;font-weight:600;box-shadow:0 4px 20px rgba(37,211,102,.3);text-decoration:none;transition:transform .2s,box-shadow .2s}
+.wa-fab:hover{transform:translateY(-2px);box-shadow:0 6px 28px rgba(37,211,102,.4)}
+.wa-fab svg{width:20px;height:20px;flex-shrink:0}
+
+/* RESPONSIVE */
+@media(min-width:681px){.tabs-desktop{display:flex}.mob-btn{display:none}.mob-drop{display:none!important}}
+@media(max-width:680px){
+  body{font-size:15px;padding-bottom:88px}
+  .tabs-desktop{display:none}.mob-btn{display:flex}
+  .topbar{padding:0 12px}
+  .ext-bar{display:flex;margin-left:0;border-left:none;gap:2px}
+  .ext-btn{padding:0 6px;height:52px;border-right:none}
+  .ext-btn.locked{display:none}
+  .ext-lbl{display:none}
+  .mob-btn{width:42px;height:42px}
+  .topbar-right{gap:4px}
+  .page{padding:18px 15px 36px;max-width:100%;overflow-x:clip}
+  .ov-row1,.ov-row2{grid-template-columns:repeat(2,1fr);gap:9px}
+  .ch-split{grid-template-columns:1fr;gap:9px}
+  .bn-grid{grid-template-columns:1fr;gap:9px}
+  .phase-grid{grid-template-columns:1fr;gap:9px}
+  .rm-track{min-width:620px}
+  .rm-uc-grid{grid-template-columns:1fr}
+  .eng-table{border:none;background:transparent;border-radius:0;overflow:visible}
+  .eng-table thead{display:none}
+  .eng-table tbody,.eng-table tr,.eng-table td{display:block;width:100%}
+  .eng-table tr{background:var(--surf);border:0.5px solid var(--border);border-radius:11px;margin-bottom:9px;padding:14px 16px;position:relative}
+  .eng-table tr.broken{background:rgba(226,80,58,.025)}
+  .eng-table td{padding:0;border:none;font-size:13px}
+  .eng-table td:nth-child(1){position:absolute;top:14px;right:14px;width:auto}
+  .eng-table td:nth-child(2){font-size:15px;font-weight:600;color:var(--dark);margin-bottom:7px;padding-right:30px}
+  .eng-table td:nth-child(3){margin-bottom:8px}
+  .eng-table td:nth-child(4)::before{content:"Situación: ";font-weight:600;color:var(--ink)}
+  .eng-table td:nth-child(5)::before{content:"Cuándo: ";font-weight:600;color:var(--ink)}
+  .wa-fab{bottom:14px;left:14px;right:14px;width:auto;max-width:calc(100% - 28px);justify-content:center;border-radius:14px;padding:13px 18px;font-size:14px}
+}
+</style>
+</head>
+<body>
+
+<!-- ════════ TOPBAR ════════ -->
+<header class="topbar">
+  <div class="brand"><div class="brand-dot"></div>Sabrent · DTC</div>
+  <nav class="tabs-desktop">
+    <div class="tab on" onclick="sw('overview',this)">🏠 Panel</div>
+    <div class="tab" onclick="sw('roadmap',this)">🗺️ Hoja de ruta</div>
+    <div class="tab" onclick="sw('engine',this)">⚙️ Growth Engine</div>
+  </nav>
+  <div class="topbar-right">
+    <div class="ext-bar">
+      <a class="ext-btn" href="https://private-build.notion.site/consultoria-gmds-ecomm" target="_blank" title="Notion">
+        <svg width="13" height="13" viewBox="0 0 120 126" fill="currentColor"><path d="M20.636 21.647c3.406 2.742 4.69 2.547 11.104 2.118l60.415-3.601c1.284 0 .214-.856-.215-1.07l-10.033-7.268c-1.925-1.497-4.49-3.208-9.393-2.78L14.647 13.52c-2.136.214-2.566 1.283-1.711 2.14l7.7 6.013v-.026zm3.192 12.226v63.451c0 3.41.856 4.922 3.852 4.708l66.394-3.831c2.997-.214 3.425-2.14 3.425-4.494V30.47c0-2.353-.856-3.638-2.78-3.425l-67.462 3.852c-2.138.214-3.429 1.498-3.429 2.975zm65.297 3.424c.428.855 0 1.712-1.071 1.926l-1.712.214v25.214c-1.497.856-2.995.856-4.278.214L60.12 43.553v30.779l4.921 1.07s0 1.713-2.355 1.927l-6.633.428c-.428-.214-1.498-.856-1.712-1.712l.428-1.284V42.482L51.798 42.268c-.428-.856 0-2.138 1.284-2.353l7.054-.428L82.48 62.636V38.279l-4.06-.642c-.428-1.071.214-2.14 1.498-2.354l6.418-.214 2.79 1.428z"/></svg>
+        <span class="ext-lbl">Notion</span>
+      </a>
+      <a class="ext-btn" href="https://docs.google.com/spreadsheets/d/17YB7_6x9NpqjXIrJbMW2d0lA7i5M0nN_Vn22_5o4kXo/edit?gid=653862496#gid=653862496" target="_blank" title="Matriz de rentabilidad">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="3" y1="15" x2="21" y2="15"/><line x1="9" y1="3" x2="9" y2="21"/><line x1="15" y1="3" x2="15" y2="21"/></svg>
+        <span class="ext-lbl">Matriz</span>
+      </a>
+      <div class="ext-btn locked">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+        <span class="ext-lbl">Módulos</span>
+      </div>
+    </div>
+    <div class="mob-btn" id="mob-btn">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+    </div>
+  </div>
+  <div class="mob-drop" id="mob-drop">
+    <div class="mob-row on" onclick="sw('overview',this,true)"><span class="mob-em">🏠</span> Panel</div>
+    <div class="mob-row" onclick="sw('roadmap',this,true)"><span class="mob-em">🗺️</span> Hoja de ruta</div>
+    <div class="mob-row" onclick="sw('engine',this,true)"><span class="mob-em">⚙️</span> Growth Engine</div>
+  </div>
+</header>
+
+
+<!-- ════════ PANEL ════════ -->
+<div class="page on" id="pg-overview">
+
+  <div class="slbl">Progreso — sesión 1 de 4 · Programa 03/07 → 03/08</div>
+  <div class="chips-row">
+    <div class="sch done">S1</div>
+    <div class="sch now">S2</div>
+    <div class="sch todo">S3</div>
+    <div class="sch todo">S4</div>
+  </div>
+
+  <div class="slbl">El ecosistema · Amazon maximiza volumen — Shopify maximiza margen y marca</div>
+  <div class="ch-split">
+    <div class="ch-card canal-b">
+      <div class="ch-head">🏪 Amazon · Canal troncal <span class="bdg teal">Funciona</span></div>
+      <div class="ch-row"><span class="ch-k">Rol</span><span class="ch-v">Volumen + ranking + captura de intención</span></div>
+      <div class="ch-row"><span class="ch-k">Lo que Shopify jamás tendrá</span><span class="ch-v green">Prime · fulfillment · reviews masivos</span></div>
+      <div class="ch-row"><span class="ch-k">Lo que jamás dará</span><span class="ch-v red">Data propia · relación directa · marca</span></div>
+      <div class="ch-row"><span class="ch-k">Riesgo oculto</span><span class="ch-v amber">¿Cuánto se quema en ads por sostener volumen?</span></div>
+      <div class="ch-row"><span class="ch-k">Pregunta clave</span><span class="ch-v">¿Qué SKUs dependen 100% de Ads?</span></div>
+    </div>
+    <div class="ch-card canal-a">
+      <div class="ch-head">🌐 Shopify · Complemento estratégico <span class="bdg red">⚠ Jugando el juego equivocado</span></div>
+      <div class="ch-row"><span class="ch-k">Rol</span><span class="ch-v">Margen + Brand Demand + First Party Data</span></div>
+      <div class="ch-row"><span class="ch-k">Lo que Amazon jamás dará</span><span class="ch-v green">Email · kits · comunidad · experiencia</span></div>
+      <div class="ch-row"><span class="ch-k">Estado actual</span><span class="ch-v red">Catálogo plano, checkout con fricción</span></div>
+      <div class="ch-row"><span class="ch-k">Riesgo oculto</span><span class="ch-v amber">Canibalizar a Amazon si copia su juego</span></div>
+      <div class="ch-row"><span class="ch-k">Pregunta clave</span><span class="ch-v">¿Cuánto está dispuesto a invertir/perder el cliente?</span></div>
+    </div>
+  </div>
+
+  <div class="slbl">Principal problema</div>
+  <div class="problem-card">
+    <div class="prob-icon">⚡</div>
+    <div>
+      <div class="prob-title">El problema supuesto es el checkout. El problema real es el objetivo.</div>
+      <div class="prob-text">La "data" del e-commerce hoy viene de narrativa, no de números visibles: no hay dashboard de acquisition ni tasas medidas. Con esa foto, se le está exigiendo a Shopify rentabilizar como canal aislado, <strong>cuando la pregunta correcta es el equilibrio del ecosistema</strong>: cuánto volumen sostiene Amazon, a qué costo publicitario, y cuánto margen y preferencia de marca aporta el canal propio. Este proyecto busca expandirse de forma sólida, no rápida — y eso incluye gestionar la ansiedad del cliente con certeza visible, no con promesas.</div>
+      <div class="prob-stats">
+        <div><div class="prob-sv">0</div><div class="prob-sl">Data visible acquisition</div></div>
+        <div><div class="prob-sv">176</div><div class="prob-sl">SKUs sin rol asignado</div></div>
+        <div><div class="prob-sv">?</div><div class="prob-sl">Ratio pérdida tolerada (pendiente)</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="slbl">Matriz estratégica · Financial Performance × Strategic Value</div>
+  <div class="ov-row2">
+    <div class="ov-card">
+      <div class="ov-lbl">Alta rentabilidad + Alto valor</div>
+      <div class="ov-num teal">Escalar</div>
+      <div class="ov-sub">Agresivamente — aquí va cada dólar nuevo</div>
+    </div>
+    <div class="ov-card">
+      <div class="ov-lbl">Alta rentabilidad + Bajo valor</div>
+      <div class="ov-num violet">Mantener</div>
+      <div class="ov-sub">Rinden solos, no necesitan más inversión</div>
+    </div>
+    <div class="ov-card">
+      <div class="ov-lbl">Baja rentabilidad + Alto valor</div>
+      <div class="ov-num amber">Optimizar</div>
+      <div class="ov-sub">Construyen marca — hacen vender a la categoría</div>
+    </div>
+    <div class="ov-card">
+      <div class="ov-lbl">Baja rentabilidad + Bajo valor</div>
+      <div class="ov-num red">Revisar / Eliminar</div>
+      <div class="ov-sub">Consumen ads, inventario y soporte</div>
+    </div>
+  </div>
+
+  <div class="slbl">Tiers comerciales · El rol de cada SKU, no solo su P&amp;L</div>
+  <div class="bn-grid">
+    <div class="bn-card i">
+      <div class="bn-head"><div class="bn-n i">T1</div><div class="bn-title">Profit Drivers</div></div>
+      <div class="bn-text">Venden, tienen margen y permiten seguir invirtiendo.</div>
+      <div class="bn-imp i">→ Se escalan</div>
+    </div>
+    <div class="bn-card w">
+      <div class="bn-head"><div class="bn-n w">T2</div><div class="bn-title">Volume Drivers</div></div>
+      <div class="bn-text">Venden muchísimo pero exigen mucha inversión. Sostienen el ranking de Amazon, no necesariamente la utilidad.</div>
+      <div class="bn-imp w">→ Se vigilan: un SSD que vende 3M y quema 2,8M en ads no gana contra un Dock que deja margen real</div>
+    </div>
+    <div class="bn-card i">
+      <div class="bn-head"><div class="bn-n i">T3</div><div class="bn-title">Brand Builders</div></div>
+      <div class="bn-text">Generan contenido, awareness, atractivo para influencers, YouTube y TikTok. Hacen crecer las búsquedas de marca.</div>
+      <div class="bn-imp i">→ Justifican inversión aunque el ROAS directo no sea el mejor</div>
+    </div>
+    <div class="bn-card w">
+      <div class="bn-head"><div class="bn-n w">T4</div><div class="bn-title">Basket Builders</div></div>
+      <div class="bn-text">No existen para vender solos: existen para subir el ticket. Cross-sell, bundles, accesorios.</div>
+      <div class="bn-imp w">→ Dejan de evaluarse por ROAS individual</div>
+    </div>
+    <div class="bn-card c">
+      <div class="bn-head"><div class="bn-n c">T5</div><div class="bn-title">Margin Killers</div></div>
+      <div class="bn-text">Consumen ads, generan refunds y soporte, ocupan inventario, destruyen margen.</div>
+      <div class="bn-imp c">→ Revisión inmediata sobre la matriz de rentabilidad</div>
+    </div>
+  </div>
+
+  <div class="slbl">Cuellos de botella detectados</div>
+  <div class="bn-grid">
+    <div class="bn-card c">
+      <div class="bn-head"><div class="bn-n c">1</div><div class="bn-title">Acquisition invisible</div></div>
+      <div class="bn-text">No hay dashboard con data ni productos utilizados. Toda la capa de acquisition no existe como información consultable.</div>
+      <div class="bn-imp c">→ Mati lo construye (pendiente acceso a plataformas), Patricio lo audita</div>
+    </div>
+    <div class="bn-card c">
+      <div class="bn-head"><div class="bn-n c">2</div><div class="bn-title">Checkout con fricción</div></div>
+      <div class="bn-text">Sesiones y carritos altos, conversión final abismal por shipping y confianza — según narrativa, aún sin tasa medida.</div>
+      <div class="bn-imp c">→ Medir sesión → carrito → checkout antes de tocar nada</div>
+    </div>
+    <div class="bn-card w">
+      <div class="bn-head"><div class="bn-n w">3</div><div class="bn-title">Categorías sin diferenciación ni kits</div></div>
+      <div class="bn-text">Storage, Memory, Hubs, Chargers, Cables existen pero no se destacan ni diferencian. No hay kits tipo "según lo que haces o quién eres, necesitas estos productos".</div>
+      <div class="bn-imp w">→ Arquitectura por uso/perfil + bundles naturales (SSD+Enclosure, Dock+Hub, Charger+Cable)</div>
+    </div>
+    <div class="bn-card w">
+      <div class="bn-head"><div class="bn-n w">4</div><div class="bn-title">Canal email en 0</div></div>
+      <div class="bn-text">No existe email marketing ni recuperación de carros (5–20% recuperable). Es el canal de margen puro que Amazon jamás dará.</div>
+      <div class="bn-imp w">→ Implementación propuesta para activar en mes 2 con Patricio</div>
+    </div>
+    <div class="bn-card i">
+      <div class="bn-head"><div class="bn-n i">5</div><div class="bn-title">Branding débil vs UGREEN / Anker</div></div>
+      <div class="bn-text">Los competidores organizan el sitio como sistema de crecimiento (campañas, lifestyle, ecosistema); Sabrent presenta especificaciones.</div>
+      <div class="bn-imp i">→ Benchmark de sistemas, no de diseños</div>
+    </div>
+  </div>
+
+  <div class="alert-box info">
+    <span class="alert-icon">📈</span>
+    <div>
+      <div class="alert-title">Brand Demand: la venta que cierra en Amazon también puede ser tuya</div>
+      <div class="alert-text">Instagram → YouTube → review → blog → landing de Sabrent → el cliente conoce la marca → dos días después compra en Amazon. Esa venta no se perdió: es atribuible a la marca. Si el canal propio construye preferencia, Amazon necesita menos inversión para cerrar — Shopify se convierte en una herramienta para <strong>reducir el costo de adquisición en Amazon</strong>, no solo en un canal más de ingresos.</div>
+      <div class="bdg-row" style="margin-top:8px">
+        <span class="bdg blue">Búsquedas de marca ↑</span>
+        <span class="bdg blue">Tráfico directo ↑</span>
+        <span class="bdg blue">Suscriptores email ↑</span>
+        <span class="bdg blue">% ventas orgánicas Amazon ↑</span>
+        <span class="bdg blue">ACoS ↓ donde subió awareness</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="slbl">Stack actual</div>
+  <div class="stack-wrap">
+    <div class="sp"><div class="sd on"></div>Shopify<span class="bdg grey" style="margin-left:3px">canal DTC</span></div>
+    <div class="sp"><div class="sd on"></div>Amazon Ads<span class="bdg grey" style="margin-left:3px">canal troncal</span></div>
+    <div class="sp"><div class="sd on"></div>Meta Ads<span class="bdg grey" style="margin-left:3px">Mati · full control</span></div>
+    <div class="sp"><div class="sd on"></div>Notion<span class="bdg green" style="margin-left:3px">compartido ✓</span></div>
+    <div class="sp"><div class="sd on"></div>Matriz de rentabilidad<span class="bdg green" style="margin-left:3px">recibida ✓</span></div>
+    <div class="sp"><div class="sd off"></div>Dashboard acquisition<span class="bdg grey" style="margin-left:3px">Mati crea · Patricio audita</span></div>
+    <div class="sp"><div class="sd off"></div>Email marketing<span class="bdg grey" style="margin-left:3px">mes 2</span></div>
+    <div class="sp"><div class="sd off"></div>Kits / bundles<span class="bdg grey" style="margin-left:3px">por construir</span></div>
+  </div>
+</div>
+
+
+<!-- ════════ HOJA DE RUTA ════════ -->
+<div class="page" id="pg-roadmap">
+
+  <div class="rm-how">
+    <div class="rm-how-row">
+      <div class="rm-how-item">
+        <div class="rm-how-icon">📞</div>
+        <div><div class="rm-how-title">Llamada semanal</div><div class="rm-how-text">Una sesión por semana (viernes AM candidato — el cliente trabaja domingos). Lo acordado alimenta el siguiente paso del mapa.</div></div>
+      </div>
+      <div class="rm-how-div"></div>
+      <div class="rm-how-item">
+        <div class="rm-how-icon">📊</div>
+        <div><div class="rm-how-title">Matriz + % checkout semanal</div><div class="rm-how-text">La matriz de rentabilidad (linkeada arriba) y las tasas reales de acquisition cada semana. Sin números no hay decisión posible.</div></div>
+      </div>
+      <div class="rm-how-div"></div>
+      <div class="rm-how-item">
+        <div class="rm-how-icon">✅</div>
+        <div><div class="rm-how-title">Pendientes por sesión</div><div class="rm-how-text">Cada sesión cierra registrando lo hecho ✓ y lo pendiente pasa a la semana siguiente. Sin el entregable, la próxima sesión arranca a ciegas.</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="slbl">Estructura · 1 mes · 4 sesiones · decisión al cierre</div>
+  <div class="phase-grid">
+    <div class="phase-card m1">
+      <div class="phase-hd"><span class="phase-tag">Mes 1 · Sem 1–4</span><span class="bdg teal">En curso</span></div>
+      <div class="phase-title">Sprint Sabrent: equilibrio del ecosistema + palancas</div>
+      <div class="phase-text">Tiers comerciales sobre la matriz real, ratio de inversión/pérdida tolerada, gaps de acquisition cerrados con Mati y foco BLOWZER según brief del cliente.</div>
+      <div class="phase-tags"><span class="bdg grey">Tiers</span><span class="bdg grey">Acquisition</span><span class="bdg grey">BLOWZER</span></div>
+    </div>
+    <div class="phase-card m2">
+      <div class="phase-hd"><span class="phase-tag">Mes 2–3 · Condicional</span><span class="bdg grey">Decisión S4</span></div>
+      <div class="phase-title">Extensión: email + Brand Demand</div>
+      <div class="phase-text">Implementación del canal email con Patricio, contenido orientado a problemas y landings de venta por Hero Product. Ángulo Growth Partner (% de venta) sobre la mesa.</div>
+      <div class="phase-tags"><span class="bdg grey">Email</span><span class="bdg grey">Landings</span><span class="bdg grey">Growth Partner</span></div>
+    </div>
+    <div class="phase-card m3">
+      <div class="phase-hd"><span class="phase-tag">Horizonte</span><span class="bdg grey">Post-validación</span></div>
+      <div class="phase-title">Sistema documentado y transferible</div>
+      <div class="phase-text">El engine son los setups, no la skin: lo validado con Sabrent queda documentado en Notion como sistema replicable para el siguiente frente de GMDS.</div>
+      <div class="phase-tags"><span class="bdg grey">Notion</span><span class="bdg grey">Systems</span><span class="bdg grey">Escala</span></div>
+    </div>
+  </div>
+
+  <div class="rm-track-wrap">
+    <div style="font-size:12px;font-weight:600;color:var(--dark);margin-bottom:14px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:6px">
+      Recorrido por etapas del Growth Engine
+      <span class="bdg amber">📅 Próxima: S2 — vie 10/07</span>
+    </div>
+    <div class="rm-track">
+      <div class="rm-node"><div class="rm-dot now">1</div><div class="rm-lbl">Foundations</div><div class="rm-sub">tiers · ratio</div></div>
+      <div class="rm-node"><div class="rm-dot future">2</div><div class="rm-lbl mt">Atracción</div><div class="rm-sub">acquisition</div></div>
+      <div class="rm-node"><div class="rm-dot future">3</div><div class="rm-lbl mt">Activación</div><div class="rm-sub">categorías · kits</div></div>
+      <div class="rm-node"><div class="rm-dot future">4</div><div class="rm-lbl mt">Conversión</div><div class="rm-sub">checkout</div></div>
+      <div class="rm-node"><div class="rm-dot future">5</div><div class="rm-lbl mt">AOV</div><div class="rm-sub">bundles</div></div>
+      <div class="rm-node"><div class="rm-dot future">6</div><div class="rm-lbl mt">Retención</div><div class="rm-sub">email · LTV</div></div>
+      <div class="rm-node"><div class="rm-dot future">7</div><div class="rm-lbl mt">Referidos</div><div class="rm-sub">reviews · UGC</div></div>
+      <div class="rm-node"><div class="rm-dot future">8</div><div class="rm-lbl mt">Systems</div><div class="rm-sub">post-validación</div></div>
+    </div>
+  </div>
+
+  <div class="slbl">Sesiones completadas</div>
+
+  <div class="week-card done" onclick="toggleCard(this)">
+    <div class="week-hd">
+      <div class="week-info">
+        <div class="week-title">S1 — Kickoff: posicionamiento en espacio-tiempo</div>
+        <div class="week-date">Viernes 03/07 · 59 min</div>
+      </div>
+      <span class="bdg teal">✓</span>
+    </div>
+    <div class="week-toggle"><span class="week-toggle-icon">▼</span> Ver detalle</div>
+    <div class="week-body">
+      <div class="week-chips"><span class="bdg teal">Accesos</span><span class="bdg teal">Diagnóstico</span><span class="bdg teal">Ecosistema</span></div>
+      <div class="week-sec">Lo que se resolvió</div>
+      <div class="week-text">Contexto operativo completo levantado: relación con el cliente 100% por correo/Slack, Mati con control full de Meta. Se identificó que el objetivo real no es rentabilizar Shopify en aislado sino <strong>equilibrar el ecosistema con Amazon como canal troncal</strong>. Notion queda como sistema central del engagement.</div>
+      <div class="week-sec">Cerrado en S1 <span class="check">✓</span></div>
+      <div class="week-text"><ul>
+        <li><span class="check">✓</span> Dash / roadmap del engine Sabrent (este panel)</li>
+        <li><span class="check">✓</span> Matriz de rentabilidad recibida y linkeada en el topbar</li>
+        <li><span class="check">✓</span> Notion compartido y operativo</li>
+        <li><span class="check">✓</span> Diagnóstico DTC documentado con checklist de preguntas por etapa (tab Growth Engine)</li>
+      </ul></div>
+    </div>
+  </div>
+
+  <div class="slbl">Sesión activa</div>
+
+  <div class="week-card now open" onclick="toggleCard(this)">
+    <div class="week-hd">
+      <div class="week-info">
+        <div class="week-title">S2 — Foundations: tiers, ratio y acquisition</div>
+        <div class="week-date">📅 Viernes 10/07 (por confirmar día fijo)</div>
+      </div>
+      <span class="bdg amber">Próxima</span>
+    </div>
+    <div class="week-toggle"><span class="week-toggle-icon">▼</span> Ver detalle</div>
+    <div class="week-body">
+      <div class="week-chips"><span class="bdg amber">Tiers comerciales</span><span class="bdg amber">Ratio inversión/pérdida</span><span class="bdg amber">Gaps acquisition</span></div>
+      <div class="week-sec">🎯 Núcleo (10–35 min)</div>
+      <div class="week-text"><ul>
+        <li>Asignar tier comercial (T1–T5) a los SKUs clave sobre la matriz de rentabilidad real</li>
+        <li>Fijar el ratio de rentabilidad máxima que se apuesta en e-commerce y cómo se equilibra con Amazon</li>
+        <li>Cerrar los gaps de acquisition con la data que construya Mati</li>
+        <li>Go / no-go BLOWZER: campañas data-first vs conservador</li>
+      </ul></div>
+      <div class="week-sec">Pendientes Kathe <span class="pend">●</span></div>
+      <div class="week-text"><ul>
+        <li>Rescatar del correo del cliente cuánto declaró estar dispuesto a <strong>perder o invertir</strong> — define el ratio de rentabilidad del canal</li>
+        <li>% exacto sesión → carrito → checkout (con Mati)</li>
+        <li>Revisar el diagnóstico completo: entender la diferencia entre canales y sus objetivos es clave para no canibalizar — expansión sólida, no rápida, y manejo de la ansiedad del cliente</li>
+        <li>Acceso a plataformas para que Mati construya el dashboard de acquisition</li>
+        <li>Confirmar día fijo de weekly (viernes AM candidato)</li>
+      </ul></div>
+      <div class="week-sec">Pendientes Patricio <span class="pend">●</span></div>
+      <div class="week-text"><ul>
+        <li>Video setup Notion + plantillas Foundations</li>
+        <li>Lista de documentos y datos a recopilar del cliente</li>
+        <li>Benchmark UGREEN, Anker + 1: sistemas de crecimiento, no diseños</li>
+        <li>Recomendación go / no-go BLOWZER ($1.000 disponibles para campañas de data)</li>
+        <li>Auditar el dashboard de acquisition cuando Mati lo construya</li>
+      </ul></div>
+      <div class="week-sec">📝 Entregable</div>
+      <div class="week-text">Portfolio con rol comercial asignado por SKU + ratio de inversión acordado: dónde va cada dólar y cuánto está dispuesto a arriesgar el ecosistema.</div>
+    </div>
+  </div>
+
+  <div class="slbl">Próximas sesiones</div>
+  <div class="rm-uc-grid">
+    <div class="rm-uc"><div class="rm-uc-num">S3 · Sem 3</div><div class="rm-uc-title">Offer + activación: categorías, kits y checkout</div><div class="rm-uc-chips"><span class="bdg grey">Arquitectura por perfil</span><span class="bdg grey">CRO</span></div></div>
+    <div class="rm-uc"><div class="rm-uc-num">S4 · Sem 4</div><div class="rm-uc-title">Validación + decisión mes 2</div><div class="rm-uc-chips"><span class="bdg grey">Matriz de checkpoints</span><span class="bdg grey">Propuesta email</span></div></div>
+    <div class="rm-uc"><div class="rm-uc-num">Mes 2–3 · Condicional</div><div class="rm-uc-title">Email + Brand Demand / Growth Partner</div><div class="rm-uc-chips"><span class="bdg grey">Implementación</span><span class="bdg grey">% de venta</span></div></div>
+  </div>
+</div>
+
+
+<!-- ════════ GROWTH ENGINE ════════ -->
+<div class="page" id="pg-engine">
+
+  <div class="slbl" style="margin-top:0">Estado actual del Growth Engine — 8 etapas</div>
+
+  <table class="eng-table">
+    <thead><tr><th>#</th><th>Etapa</th><th>Estado</th><th>Situación actual</th><th>Cuándo</th></tr></thead>
+    <tbody>
+      <tr>
+        <td><div class="sdot" style="background:#0B6CF0">1</div></td>
+        <td class="sname">Foundations</td>
+        <td><span class="bdg amber">🔄 Activa</span></td>
+        <td class="sgap">Matriz de rentabilidad recibida. Falta la capa comercial: tier T1–T5 por SKU y el ratio de inversión/pérdida que el cliente declaró tolerar.</td>
+        <td class="sgap">S1–S2</td>
+      </tr>
+      <tr class="broken">
+        <td><div class="sdot" style="background:#3B9EE8">2</div></td>
+        <td class="sname">Atracción</td>
+        <td><span class="bdg red">✗ Invisible</span></td>
+        <td class="sgap">Campañas corren pero sin data consultable: no sabemos qué funciona, con qué ángulos ni con qué budget. Dashboard por construir (Mati crea, Patricio audita).</td>
+        <td class="sgap">S2–S3</td>
+      </tr>
+      <tr class="broken">
+        <td><div class="sdot" style="background:#E2503A">3</div></td>
+        <td class="sname">Activación</td>
+        <td><span class="bdg red">✗ Roto</span></td>
+        <td class="sgap">Páginas como fichas técnicas y categorías planas sin kits ni diferenciación. El sitio presenta especificaciones cuando debería vender problemas resueltos.</td>
+        <td class="sgap"><span class="bdg grey">S3</span></td>
+      </tr>
+      <tr class="broken">
+        <td><div class="sdot" style="background:#E8A237">4</div></td>
+        <td class="sname">Conversión</td>
+        <td><span class="bdg red">✗ Sin medir</span></td>
+        <td class="sgap">El checkout es el problema narrado — falta la tasa real para confirmar magnitud y priorizar shipping/confianza.</td>
+        <td class="sgap">S3</td>
+      </tr>
+      <tr class="broken">
+        <td><div class="sdot" style="background:#E05599">5</div></td>
+        <td class="sname">AOV / Cross-Sell</td>
+        <td><span class="bdg red">✗ Por construir</span></td>
+        <td class="sgap">Sin bundles ni Basket Builders operando. El ticket promedio no tiene palancas.</td>
+        <td class="sgap"><span class="bdg grey">Mes 2</span></td>
+      </tr>
+      <tr class="broken">
+        <td><div class="sdot" style="background:#3EB489">6</div></td>
+        <td class="sname">Retención</td>
+        <td><span class="bdg red">✗ Canal en 0</span></td>
+        <td class="sgap">Email inexistente: sin flows, sin recuperación de carros, sin First Party Data. Implementación propuesta para mes 2 con Patricio.</td>
+        <td class="sgap">Mes 2</td>
+      </tr>
+      <tr class="broken">
+        <td><div class="sdot" style="background:#AA6E28">7</div></td>
+        <td class="sname">Referidos</td>
+        <td><span class="bdg red">✗ Por construir</span></td>
+        <td class="sgap">Reviews viven en Amazon; sin UGC ni comunidad propia. La marca no genera preferencia directa.</td>
+        <td class="sgap"><span class="bdg grey">Mes 3</span></td>
+      </tr>
+      <tr style="opacity:.5">
+        <td><div class="sdot" style="background:#aaa">8</div></td>
+        <td class="sname">Systems</td>
+        <td><span class="bdg grey">Post-validación</span></td>
+        <td class="sgap">Se activa cuando 1–7 estén validadas. No se automatiza lo que no está probado.</td>
+        <td class="sgap">—</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="slbl">Las preguntas que cada etapa tiene que responder</div>
+
+  <div class="qa-card" onclick="toggleCard(this)">
+    <div class="qa-hd"><div class="qa-n" style="background:#0B6CF0">1</div><div class="qa-title">Foundations</div><span class="bdg amber" style="margin-left:auto">🔄 Activa</span><span class="qa-icon">▼</span></div>
+    <div class="qa-body"><ul>
+      <li>¿Cuánto declaró el cliente estar dispuesto a perder o invertir — y qué ratio de rentabilidad define eso para el e-commerce vs Amazon?</li>
+      <li>¿Qué tier comercial (T1–T5) le corresponde a cada SKU sobre la matriz de rentabilidad?</li>
+      <li>¿Quién merece más inversión: el que más vende o el que más valor genera para el ecosistema?</li>
+    </ul></div>
+  </div>
+
+  <div class="qa-card broken-q" onclick="toggleCard(this)">
+    <div class="qa-hd"><div class="qa-n" style="background:#3B9EE8">2</div><div class="qa-title">Atracción · Gaps de acquisition</div><span class="bdg red" style="margin-left:auto">✗ Invisible</span><span class="qa-icon">▼</span></div>
+    <div class="qa-body"><ul>
+      <li>¿Qué productos están funcionando bien en campañas hoy?</li>
+      <li>¿Tenemos catálogos diferenciados por audiencia o categoría?</li>
+      <li>¿Tenemos anuncios con ángulos distintos, o un solo mensaje para todo?</li>
+      <li>¿Cuál es el budget diario y cómo se reparte entre canales y SKUs?</li>
+    </ul></div>
+  </div>
+
+  <div class="qa-card broken-q" onclick="toggleCard(this)">
+    <div class="qa-hd"><div class="qa-n" style="background:#E2503A">3</div><div class="qa-title">Activación</div><span class="bdg red" style="margin-left:auto">✗ Roto</span><span class="qa-icon">▼</span></div>
+    <div class="qa-body"><ul>
+      <li>¿Las categorías se diferencian y destacan, o son una lista plana de productos?</li>
+      <li>¿Existen kits por uso o perfil — "según lo que haces o quién eres, necesitas estos productos"?</li>
+      <li>¿Por qué alguien debería querer comprar directamente en Sabrent?</li>
+    </ul></div>
+  </div>
+
+  <div class="qa-card broken-q" onclick="toggleCard(this)">
+    <div class="qa-hd"><div class="qa-n" style="background:#E8A237">4</div><div class="qa-title">Conversión</div><span class="bdg red" style="margin-left:auto">✗ Sin medir</span><span class="qa-icon">▼</span></div>
+    <div class="qa-body"><ul>
+      <li>¿Cuál es la tasa exacta sesión → carrito → checkout?</li>
+      <li>¿Qué pasa si el costo de envío se transporta al precio?</li>
+      <li>¿Qué señales de confianza faltan: garantías, devoluciones, tiempos claros?</li>
+    </ul></div>
+  </div>
+
+  <div class="qa-card broken-q" onclick="toggleCard(this)">
+    <div class="qa-hd"><div class="qa-n" style="background:#E05599">5</div><div class="qa-title">AOV / Cross-Sell</div><span class="bdg red" style="margin-left:auto">✗ Por construir</span><span class="qa-icon">▼</span></div>
+    <div class="qa-body"><ul>
+      <li>¿Qué bundles naturales existen en el catálogo?</li>
+      <li>¿Qué SKUs son Basket Builders y dejan de medirse por venta individual?</li>
+    </ul></div>
+  </div>
+
+  <div class="qa-card broken-q" onclick="toggleCard(this)">
+    <div class="qa-hd"><div class="qa-n" style="background:#3EB489">6</div><div class="qa-title">Retención</div><span class="bdg red" style="margin-left:auto">✗ Canal en 0</span><span class="qa-icon">▼</span></div>
+    <div class="qa-body"><ul>
+      <li>¿Qué flows de email recuperan el 5–20% de carros abandonados que hoy se pierde entero?</li>
+      <li>¿Cómo capturamos First Party Data en cada visita?</li>
+      <li>¿Qué productos automatizan la recompra y construyen LTV?</li>
+    </ul></div>
+  </div>
+
+  <div class="qa-card broken-q" onclick="toggleCard(this)">
+    <div class="qa-hd"><div class="qa-n" style="background:#AA6E28">7</div><div class="qa-title">Referidos</div><span class="bdg red" style="margin-left:auto">✗ Por construir</span><span class="qa-icon">▼</span></div>
+    <div class="qa-body"><ul>
+      <li>¿Cómo salen los reviews de Amazon y entran a la marca?</li>
+      <li>¿Qué Brand Builders generan atención en TikTok / YouTube aunque no sean los más rentables?</li>
+      <li>¿Qué haría que un cliente prefiera Sabrent directo — comunidad, lanzamientos, garantía extendida?</li>
+    </ul></div>
+  </div>
+
+  <div class="qa-card" onclick="toggleCard(this)" style="opacity:.7">
+    <div class="qa-hd"><div class="qa-n" style="background:#aaa">8</div><div class="qa-title">Systems</div><span class="bdg grey" style="margin-left:auto">Post-validación</span><span class="qa-icon">▼</span></div>
+    <div class="qa-body"><ul>
+      <li>¿Lo que funciona está documentado para que no dependa de nadie?</li>
+      <li>¿Qué se puede automatizar ahora que ya está validado?</li>
+      <li>No se automatiza lo que no está validado — por eso Systems va al final.</li>
+    </ul></div>
+  </div>
+
+  <div class="alert-box info" style="margin-top:18px">
+    <span class="alert-icon">ℹ️</span>
+    <div>
+      <div class="alert-title">Hipótesis del proyecto</div>
+      <div class="alert-text">El objetivo de Sabrent no es que los clientes dejen de comprar en Amazon. Es que cuando lleguen a Amazon, <strong>ya sepan que quieren comprar Sabrent</strong>. Si el canal propio construye esa preferencia con contenido, educación, kits y experiencia de marca, Amazon deja de ser solo un canal que consume presupuesto y pasa a capturar demanda previamente creada. El resultado esperado no es solo vender más en Shopify: es mejorar la rentabilidad total del ecosistema.</div>
+    </div>
+  </div>
+</div>
+
+
+<!-- WA FAB -->
+<a class="wa-fab" href="https://wa.me/56978048922?text=Patricio%20tengo%20dudas%20sobre..." target="_blank" aria-label="WhatsApp">
+  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12.005 2.001C6.474 2.001 2 6.476 2 12.007c0 1.771.462 3.463 1.338 4.952L2 22l5.188-1.359A9.944 9.944 0 0 0 12.005 22c5.531 0 10.005-4.476 10.005-10.007 0-2.674-1.041-5.188-2.931-7.079A9.953 9.953 0 0 0 12.005 2z"/></svg>
+  <span>Consultar</span>
+</a>
+
+<script>
+const PAGES=['overview','roadmap','engine'];
+function sw(id,el,isMob){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('on'));
+  document.querySelectorAll('.tab,.mob-row').forEach(t=>t.classList.remove('on'));
+  document.getElementById('pg-'+id).classList.add('on');
+  const idx=PAGES.indexOf(id);
+  document.querySelectorAll('.tab')[idx]?.classList.add('on');
+  document.querySelectorAll('.mob-row')[idx]?.classList.add('on');
+  if(isMob)closeMob();
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+const HAMBURGER='<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>';
+const CLOSE='<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>';
+const mobBtn=document.getElementById('mob-btn');
+const mobDrop=document.getElementById('mob-drop');
+mobBtn.innerHTML=HAMBURGER;
+function setMenu(open){mobDrop.classList.toggle('open',open);mobBtn.innerHTML=open?CLOSE:HAMBURGER;}
+function toggleMob(){setMenu(!mobDrop.classList.contains('open'));}
+function closeMob(){setMenu(false);}
+mobBtn.addEventListener('click',e=>{e.stopPropagation();toggleMob();});
+function toggleCard(card){card.classList.toggle('open');}
+document.addEventListener('click',e=>{
+  if(!mobDrop.classList.contains('open'))return;
+  if(mobDrop.contains(e.target)||mobBtn.contains(e.target))return;
+  closeMob();
+});
+</script>
+</body>
+</html>
