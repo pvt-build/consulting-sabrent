@@ -319,11 +319,11 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--ink);font
 <!-- ════════ PANEL ════════ -->
 <div class="page on" id="pg-overview">
 
-  <div class="slbl">Progreso — sesión 1 de 4 · Programa 03/07 → 03/08</div>
+  <div class="slbl">Progreso — sesión 2 de 4 completada · Programa 03/07 → 03/08</div>
   <div class="chips-row">
     <div class="sch done">S1</div>
-    <div class="sch now">S2</div>
-    <div class="sch todo">S3</div>
+    <div class="sch done">S2</div>
+    <div class="sch now">S3</div>
     <div class="sch todo">S4</div>
   </div>
 
@@ -492,6 +492,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--ink);font
     <div class="week-toggle"><span class="week-toggle-icon">▼</span> Ver detalle</div>
     <div class="week-body">
       <div class="week-chips"><span class="bdg teal">Accesos</span><span class="bdg teal">Diagnóstico</span><span class="bdg teal">Ecosistema</span></div>
+      <a href="#" target="_blank" onclick="event.stopPropagation()" style="display:inline-flex;align-items:center;gap:6px;background:var(--violet-lt);color:var(--violet);border:0.5px solid var(--violet);border-radius:7px;padding:6px 12px;font-size:11.5px;font-weight:600;text-decoration:none;margin-bottom:10px">▶ Grabación S1</a>
       <div class="week-sec">Lo que se resolvió</div>
       <div class="week-text">Contexto operativo completo levantado: relación con el cliente 100% por correo/Slack, Mati con control full de Meta. Se identificó que el objetivo real no es rentabilizar Shopify en aislado sino <strong>equilibrar el ecosistema con Amazon como canal troncal</strong>. Notion queda como sistema central del engagement.</div>
       <div class="week-sec">Cerrado en S1 <span class="check">✓</span></div>
@@ -504,57 +505,76 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--ink);font
     </div>
   </div>
 
+  <div class="week-card done" onclick="toggleCard(this)">
+    <div class="week-hd">
+      <div class="week-info">
+        <div class="week-title">S2 — Ejecución: unit economics, acquisition y checkout</div>
+        <div class="week-date">Martes 08/07 · ~2 horas · con Kathe</div>
+      </div>
+      <span class="bdg teal">✓</span>
+    </div>
+    <div class="week-toggle"><span class="week-toggle-icon">▼</span> Ver detalle</div>
+    <div class="week-body">
+      <div class="week-chips"><span class="bdg teal">Profit Matrix ✓</span><span class="bdg teal">Productos definidos ✓</span><span class="bdg teal">Ratio CEO ✓</span></div>
+      <div style="display:flex;gap:7px;flex-wrap:wrap;margin-bottom:10px">
+        <a href="https://fathom.video/share/zMTn8gKHFvqhP9Rz_pCmK9VBndGFu5eA" target="_blank" onclick="event.stopPropagation()" style="display:inline-flex;align-items:center;gap:6px;background:var(--violet-lt);color:var(--violet);border:0.5px solid var(--violet);border-radius:7px;padding:6px 12px;font-size:11.5px;font-weight:600;text-decoration:none">▶ Grabación S2 · pt.1 (59 min)</a>
+        <a href="https://fathom.video/share/YK5xMTvtvCaerrzyjDzAQrQmx8dD8ksx" target="_blank" onclick="event.stopPropagation()" style="display:inline-flex;align-items:center;gap:6px;background:var(--violet-lt);color:var(--violet);border:0.5px solid var(--violet);border-radius:7px;padding:6px 12px;font-size:11.5px;font-weight:600;text-decoration:none">▶ Grabación S2 · pt.2 (42 min)</a>
+      </div>
+      <div class="week-sec">Cerrado en S2 <span class="check">✓</span></div>
+      <div class="week-text"><ul>
+        <li><span class="check">✓</span> Profit Matrix completa: Voltik CM $38,45 Shopify · Blowzer CM $41,12 · ChillyPop no soporta paid solo</li>
+        <li><span class="check">✓</span> Ratio CEO: pérdida máx. USD 5/u · USD 7.000/mes total — hasta 1.400 u/mes a máxima agresividad</li>
+        <li><span class="check">✓</span> Foco: Voltik hero (all-in) + ChillyPop solo en bundle/add-on + Blowzer candidato a testear</li>
+        <li><span class="check">✓</span> Unit economics desglosadas por canal (Amazon vs Shopify) para 3 productos</li>
+        <li><span class="check">✓</span> Gate de activación de campañas con checklist de 4 puntos definido</li>
+      </ul></div>
+      <div class="week-sec">Accionables Kathe <span class="pend">●</span></div>
+      <div class="week-text"><ul>
+        <li>Configurar <strong>atribución</strong> correctamente — pixel Meta + UTMs + GA4</li>
+        <li>Resolver acceso y verificación de <strong>Google Merchant Center</strong></li>
+        <li>Implementar <strong>Klaviyo</strong> — conectar con Shopify, flows de bienvenida y recuperación de carros</li>
+        <li>Ejecutar mejoras de <strong>CRO</strong> priorizando friction en checkout (shipping, pago, confianza)</li>
+        <li>Activar <strong>Google Ads Search</strong> — capturar intención que hoy va directo a Amazon</li>
+        <li>Activar <strong>campañas Meta</strong> una vez que los 4 gates estén en verde</li>
+        <li>Generar <strong>budget con data clara</strong> distribuido por canal y SKU dentro de los guardrails</li>
+        <li>Apuntar primeras campañas a <strong>Voltik como hero product</strong></li>
+        <li>Definir y ajustar el bundle de <strong>ChillyPop</strong> (AOV objetivo + partner de kit)</li>
+        <li>Confirmar si <strong>Voltik tiene algún bundle natural</strong> en el catálogo actual</li>
+        <li>Resolver el <strong>checkout</strong>: shipping (gate #1), métodos de pago y carros abandonados</li>
+      </ul></div>
+      <div class="week-sec">Patricio · sin pendientes <span class="check">✓</span></div>
+      <div class="week-text">Todo lo comprometido del lado de consultoría entregado en S2: Profit Matrix, gate de activación, marco de decisión y roadmap actualizado. La ejecución está 100% del lado de Kathe y Mati.</div>
+    </div>
+  </div>
+
   <div class="slbl">Sesión activa</div>
 
   <div class="week-card now open" onclick="toggleCard(this)">
     <div class="week-hd">
       <div class="week-info">
-        <div class="week-title">S2 — Ejecución: shipping, reviews y producción de ads</div>
-        <div class="week-date">Por agendar</div>
+        <div class="week-title">S3 — Campañas ON + lectura de primeros datos</div>
+        <div class="week-date">📅 Por agendar</div>
       </div>
-      <span class="bdg amber">Próxima</span>
+      <span class="bdg amber">En curso</span>
     </div>
     <div class="week-toggle"><span class="week-toggle-icon">▼</span> Ver detalle</div>
     <div class="week-body">
-      <div class="week-chips"><span class="bdg teal">Productos elegidos ✓</span><span class="bdg teal">Ratio definido ✓</span><span class="bdg amber">Cacería de datos</span></div>
-      <div class="week-sec">🎯 Núcleo (10–35 min)</div>
+      <div class="week-chips"><span class="bdg amber">Gates de activación</span><span class="bdg amber">Meta live</span><span class="bdg amber">CRO checkout</span></div>
+      <div class="week-sec">🎯 Foco</div>
       <div class="week-text"><ul>
-        <li>Confirmar shipping definido y ejecutado — es EL gate de campañas</li>
-        <li>Revisar unit economics de la Profit Matrix: cuánto se puede gastar en Meta por producto</li>
-        <li>Estado de reviews Amazon → Shopify y PDP de Voltik</li>
-        <li>Go / no-go de campañas según checklist de activación</li>
+        <li>Verificar que los 4 gates estén en verde: shipping, reviews, PDP+tracking, 15 estáticos</li>
+        <li>Confirmar campañas Meta ON con budget dentro de guardrails ($5/u · $7K/mes)</li>
+        <li>Primera lectura de data: CAC real vs techo por producto</li>
+        <li>Revisar avance Klaviyo, atribución y Google Merchant</li>
+        <li>Estado checkout con tasa sesión → carrito → pago con número real</li>
       </ul></div>
-      <div class="week-sec">Decidido — no volver a abrir <span class="check">✓</span></div>
-      <div class="week-text"><ul>
-        <li><span class="check">✓</span> Productos foco: <strong>Voltik (hero, all-in) + ChillyPop (soporte/bundle)</strong></li>
-        <li><span class="check">✓</span> Ratio del cliente: <strong>pérdida máx. USD 5/unidad sobre CM · USD 7.000/mes total</strong> — budget a discreción dentro de esos límites (ver Profit Matrix)</li>
-        <li><span class="check">✓</span> COGS recibido: Voltik ~46% de ventas · ChillyPop confirmado</li>
-      </ul></div>
-      <div class="week-sec">Pendientes Kathe <span class="pend">●</span></div>
-      <div class="week-text"><ul>
-        <li>% exacto sesión → carrito → checkout (con Mati)</li>
-        <li>GA4: ¿Voltik y ChillyPop reciben tráfico orgánico o todo se va a Amazon?</li>
-        <li>Shopify vía Sidekick: ventas, AOV, conv% por producto (últimos 90 días)</li>
-        <li>Definir método de shipping — si toma 3 min, ¿qué falta para ejecutarlo hoy?</li>
-        <li>App de importación de reviews Amazon → Shopify</li>
-      </ul></div>
-      <div class="week-sec">Pendientes Mati <span class="pend">●</span></div>
-      <div class="week-text"><ul>
-        <li>Completar matriz de rentabilidad (Sheets) con shipping/u y desglose de fees por SKU</li>
-        <li>Desglose del fee Amazon: por qué 21% Voltik vs 48% ChillyPop</li>
-        <li>Data de campañas: qué generó intención vs. qué no</li>
-        <li>Ideas de ángulos por producto desde el brief de Foundations</li>
-      </ul></div>
-      <div class="week-sec">Patricio · visión y claridad <span class="check">✓</span></div>
-      <div class="week-text">Aporta perspectiva, marco de decisión y claridad estratégica plasmada en este roadmap. No ejecuta operación: define el orden, los criterios y el gate de activación. La ejecución vive en Kathe y Mati.</div>
       <div class="week-sec">📝 Entregable</div>
-      <div class="week-text">Shipping corregido + reviews visibles + 15 estáticos en producción → campañas listas para prender dentro de los guardrails de $5/u y $7K/mes.</div>
+      <div class="week-text">Campañas corriendo + primera lectura CAC real vs techo + checkout medido. Decisión de mantener, ajustar o frenar según data.</div>
     </div>
   </div>
 
   <div class="slbl">Próximas sesiones</div>
   <div class="rm-uc-grid">
-    <div class="rm-uc"><div class="rm-uc-num">S3</div><div class="rm-uc-title">Campañas ON + lectura de primeros datos</div><div class="rm-uc-chips"><span class="bdg grey">Meta live</span><span class="bdg grey">CRO checkout</span></div></div>
     <div class="rm-uc"><div class="rm-uc-num">S4</div><div class="rm-uc-title">Validación + decisión mes 2</div><div class="rm-uc-chips"><span class="bdg grey">Checkpoints</span><span class="bdg grey">Propuesta email</span></div></div>
     <div class="rm-uc"><div class="rm-uc-num">Mes 2–3 · Condicional</div><div class="rm-uc-title">Email + Brand Demand / Growth Partner</div><div class="rm-uc-chips"><span class="bdg grey">Implementación</span><span class="bdg grey">% de venta</span></div></div>
   </div>
