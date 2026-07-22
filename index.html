@@ -287,6 +287,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--ink);font
     <div class="tab" onclick="sw('roadmap',this)">🗺️ Hoja de ruta</div>
     <div class="tab" onclick="sw('engine',this)">⚙️ Growth Engine</div>
     <div class="tab" onclick="sw('economics',this)">📊 Profit Matrix</div>
+    <div class="tab" onclick="sw('nextsteps',this)" style="color:var(--warm);font-weight:600">💡 Next Steps</div>
   </nav>
   <div class="topbar-right">
     <div class="ext-bar">
@@ -312,6 +313,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--ink);font
     <div class="mob-row" onclick="sw('roadmap',this,true)"><span class="mob-em">🗺️</span> Hoja de ruta</div>
     <div class="mob-row" onclick="sw('engine',this,true)"><span class="mob-em">⚙️</span> Growth Engine</div>
     <div class="mob-row" onclick="sw('economics',this,true)"><span class="mob-em">📊</span> Profit Matrix</div>
+    <div class="mob-row" onclick="sw('nextsteps',this,true)" style="color:var(--warm);font-weight:600"><span class="mob-em">💡</span> Next Steps</div>
   </div>
 </header>
 
@@ -319,12 +321,12 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--ink);font
 <!-- ════════ PANEL ════════ -->
 <div class="page on" id="pg-overview">
 
-  <div class="slbl">Progreso — sesión 2 de 4 completada · Programa 03/07 → 03/08</div>
+  <div class="slbl">Progreso — 4 de 4 sesiones completadas · Programa 03/07 → 03/08</div>
   <div class="chips-row">
     <div class="sch done">S1</div>
     <div class="sch done">S2</div>
-    <div class="sch now">S3</div>
-    <div class="sch todo">S4</div>
+    <div class="sch done">S3</div>
+    <div class="sch done">S4</div>
   </div>
 
   <div class="slbl">El ecosistema · Amazon maximiza volumen — Shopify maximiza margen y marca</div>
@@ -415,6 +417,98 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--ink);font
     <div class="sp"><div class="sd off"></div>Dashboard acquisition<span class="bdg grey" style="margin-left:3px">Mati construye</span></div>
     <div class="sp"><div class="sd off"></div>Email marketing<span class="bdg grey" style="margin-left:3px">mes 2</span></div>
     <div class="sp"><div class="sd off"></div>Kits / bundles<span class="bdg grey" style="margin-left:3px">por construir</span></div>
+  </div>
+
+  <!-- ══ EVOLUCIÓN ══ -->
+  <div class="slbl" style="margin-top:32px">Tu evolución · de operadora a constructora</div>
+  <div style="background:var(--dark);border-radius:14px;padding:28px 24px 24px;overflow:hidden;position:relative">
+
+    <!-- Título interior -->
+    <div style="font-size:11px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.28);margin-bottom:24px">4 sesiones · 1 mes · 1 transformación</div>
+
+    <!-- Track de niveles -->
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:0;position:relative;margin-bottom:28px">
+
+      <!-- Línea conectora de fondo -->
+      <div style="position:absolute;top:28px;left:calc(12.5%);right:calc(12.5%);height:2px;background:rgba(255,255,255,.08);z-index:0"></div>
+      <div style="position:absolute;top:28px;left:calc(12.5%);right:calc(12.5%);height:2px;background:linear-gradient(90deg,var(--teal) 0%,var(--teal) 100%);z-index:1;clip-path:inset(0 0 0 0)"></div>
+
+      <!-- S1 -->
+      <div style="display:flex;flex-direction:column;align-items:center;gap:0;position:relative;z-index:2">
+        <div style="width:56px;height:56px;border-radius:50%;background:var(--teal);display:flex;align-items:center;justify-content:center;font-family:'DM Mono',monospace;font-size:13px;font-weight:500;color:#fff;border:3px solid var(--dark);box-shadow:0 0 0 2px var(--teal)">S1</div>
+        <div style="margin-top:12px;font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.1em;color:rgba(255,255,255,.3);text-align:center">03 Jul</div>
+        <div style="margin-top:8px;background:rgba(62,180,137,.12);border:0.5px solid rgba(62,180,137,.3);border-radius:20px;padding:3px 10px;font-size:10px;font-weight:500;color:var(--teal);text-align:center;white-space:nowrap">🔓 Claridad ecosistema</div>
+        <div style="margin-top:10px;font-size:11px;color:rgba(255,255,255,.38);text-align:center;font-style:italic;line-height:1.5;max-width:130px">"¿Dónde está el problema real?"</div>
+      </div>
+
+      <!-- S2 -->
+      <div style="display:flex;flex-direction:column;align-items:center;gap:0;position:relative;z-index:2">
+        <div style="width:56px;height:56px;border-radius:50%;background:var(--teal);display:flex;align-items:center;justify-content:center;font-family:'DM Mono',monospace;font-size:13px;font-weight:500;color:#fff;border:3px solid var(--dark);box-shadow:0 0 0 2px var(--teal)">S2</div>
+        <div style="margin-top:12px;font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.1em;color:rgba(255,255,255,.3);text-align:center">10 Jul</div>
+        <div style="margin-top:8px;background:rgba(62,180,137,.12);border:0.5px solid rgba(62,180,137,.3);border-radius:20px;padding:3px 10px;font-size:10px;font-weight:500;color:var(--teal);text-align:center;white-space:nowrap">🔓 Unit economics</div>
+        <div style="margin-top:10px;font-size:11px;color:rgba(255,255,255,.38);text-align:center;font-style:italic;line-height:1.5;max-width:130px">"¿Cuánto puedo perder en esto?"</div>
+      </div>
+
+      <!-- S3 -->
+      <div style="display:flex;flex-direction:column;align-items:center;gap:0;position:relative;z-index:2">
+        <div style="width:56px;height:56px;border-radius:50%;background:var(--teal);display:flex;align-items:center;justify-content:center;font-family:'DM Mono',monospace;font-size:13px;font-weight:500;color:#fff;border:3px solid var(--dark);box-shadow:0 0 0 2px var(--teal)">S3</div>
+        <div style="margin-top:12px;font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.1em;color:rgba(255,255,255,.3);text-align:center">17 Jul</div>
+        <div style="margin-top:8px;background:rgba(62,180,137,.12);border:0.5px solid rgba(62,180,137,.3);border-radius:20px;padding:3px 10px;font-size:10px;font-weight:500;color:var(--teal);text-align:center;white-space:nowrap">🔓 El cuello está arriba</div>
+        <div style="margin-top:10px;font-size:11px;color:rgba(255,255,255,.38);text-align:center;font-style:italic;line-height:1.5;max-width:130px">"Llegué con mis primeros números"</div>
+      </div>
+
+      <!-- S4 -->
+      <div style="display:flex;flex-direction:column;align-items:center;gap:0;position:relative;z-index:2">
+        <div style="width:56px;height:56px;border-radius:50%;background:var(--warm);display:flex;align-items:center;justify-content:center;font-family:'DM Mono',monospace;font-size:13px;font-weight:500;color:#fff;border:3px solid var(--dark);box-shadow:0 0 0 2px var(--warm)">S4</div>
+        <div style="margin-top:12px;font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.1em;color:rgba(255,255,255,.3);text-align:center">22 Jul</div>
+        <div style="margin-top:8px;background:rgba(11,108,240,.15);border:0.5px solid rgba(11,108,240,.4);border-radius:20px;padding:3px 10px;font-size:10px;font-weight:500;color:#5B9BF8;text-align:center;white-space:nowrap">⚡ Criterio propio</div>
+        <div style="margin-top:10px;font-size:11px;color:rgba(255,255,255,.38);text-align:center;font-style:italic;line-height:1.5;max-width:130px">"¿Qué sigue más allá de Sabrent?"</div>
+      </div>
+
+    </div>
+
+    <!-- Divisor -->
+    <div style="border-top:0.5px solid rgba(255,255,255,.08);margin-bottom:20px"></div>
+
+    <!-- Antes vs Ahora -->
+    <div style="display:grid;grid-template-columns:1fr auto 1fr;gap:16px;align-items:start">
+
+      <!-- Antes -->
+      <div>
+        <div style="font-size:10px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.25);margin-bottom:12px">Así llegaste · Sem 1</div>
+        <div style="display:flex;flex-direction:column;gap:7px">
+          <div style="display:flex;align-items:center;gap:8px"><div style="width:6px;height:6px;border-radius:50%;background:#E2503A;flex-shrink:0"></div><span style="font-size:12px;color:rgba(255,255,255,.45)">Canal email en $0, sin recuperación</span></div>
+          <div style="display:flex;align-items:center;gap:8px"><div style="width:6px;height:6px;border-radius:50%;background:#E2503A;flex-shrink:0"></div><span style="font-size:12px;color:rgba(255,255,255,.45)">Sin atribución — operando a ciegas</span></div>
+          <div style="display:flex;align-items:center;gap:8px"><div style="width:6px;height:6px;border-radius:50%;background:#E2503A;flex-shrink:0"></div><span style="font-size:12px;color:rgba(255,255,255,.45)">Shopify vs Amazon como si fueran competidores</span></div>
+          <div style="display:flex;align-items:center;gap:8px"><div style="width:6px;height:6px;border-radius:50%;background:#E2503A;flex-shrink:0"></div><span style="font-size:12px;color:rgba(255,255,255,.45)">Preguntas al consultor: "¿qué hago?"</span></div>
+        </div>
+      </div>
+
+      <!-- Flecha -->
+      <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;padding-top:24px">
+        <svg width="32" height="16" viewBox="0 0 32 16" fill="none"><path d="M0 8h28M22 2l8 6-8 6" stroke="var(--teal)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <div style="font-size:9px;color:rgba(255,255,255,.2);margin-top:6px;letter-spacing:.08em;text-transform:uppercase">30 días</div>
+      </div>
+
+      <!-- Ahora -->
+      <div>
+        <div style="font-size:10px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--teal);margin-bottom:12px">Así estás hoy · Sem 4</div>
+        <div style="display:flex;flex-direction:column;gap:7px">
+          <div style="display:flex;align-items:center;gap:8px"><div style="width:6px;height:6px;border-radius:50%;background:var(--teal);flex-shrink:0"></div><span style="font-size:12px;color:rgba(255,255,255,.7)">$4,900 · email + pop-up en 15 días</span></div>
+          <div style="display:flex;align-items:center;gap:8px"><div style="width:6px;height:6px;border-radius:50%;background:var(--teal);flex-shrink:0"></div><span style="font-size:12px;color:rgba(255,255,255,.7)">7,000 clics Google Shopping trazables</span></div>
+          <div style="display:flex;align-items:center;gap:8px"><div style="width:6px;height:6px;border-radius:50%;background:var(--teal);flex-shrink:0"></div><span style="font-size:12px;color:rgba(255,255,255,.7)">Ecosistema claro · cada canal con su rol</span></div>
+          <div style="display:flex;align-items:center;gap:8px"><div style="width:6px;height:6px;border-radius:50%;background:var(--teal);flex-shrink:0"></div><span style="font-size:12px;color:rgba(255,255,255,.7)">Preguntas al consultor: "vengo a validar"</span></div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Cita cierre -->
+    <div style="margin-top:20px;border-top:0.5px solid rgba(255,255,255,.06);padding-top:16px;display:flex;align-items:center;gap:12px">
+      <div style="width:3px;height:40px;background:var(--warm);border-radius:2px;flex-shrink:0"></div>
+      <div style="font-size:13px;color:rgba(255,255,255,.5);font-style:italic;line-height:1.6">"En una sesión pasamos de hablar de un flujo roto a preguntarnos qué pasa más allá de Sabrent. Eso no es un mes de tareas — es un cambio de perspectiva."</div>
+    </div>
+
   </div>
 </div>
 
@@ -547,36 +641,67 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--ink);font
     </div>
   </div>
 
-  <div class="slbl">Sesión activa</div>
-
-  <div class="week-card now open" onclick="toggleCard(this)">
+  <div class="week-card done" onclick="toggleCard(this)">
     <div class="week-hd">
       <div class="week-info">
-        <div class="week-title">S3 — Campañas ON + lectura de primeros datos</div>
-        <div class="week-date">📅 Por agendar</div>
+        <div class="week-title">S3 — Email flows live + cuello de botella en el pop-up</div>
+        <div class="week-date">Jueves 17/07 · 60 min · con Kathe</div>
       </div>
-      <span class="bdg amber">En curso</span>
+      <span class="bdg teal">✓</span>
     </div>
     <div class="week-toggle"><span class="week-toggle-icon">▼</span> Ver detalle</div>
     <div class="week-body">
-      <div class="week-chips"><span class="bdg amber">Gates de activación</span><span class="bdg amber">Meta live</span><span class="bdg amber">CRO checkout</span></div>
-      <div class="week-sec">🎯 Foco</div>
+      <div class="week-chips"><span class="bdg teal">Email activo ✓</span><span class="bdg teal">$939 en 5 días ✓</span><span class="bdg teal">A/B test ON ✓</span></div>
+      <a href="https://fathom.video/share/eaFivNB4WchEg739TH3cy_yjgLG-DJzi" target="_blank" onclick="event.stopPropagation()" style="display:inline-flex;align-items:center;gap:6px;background:var(--violet-lt);color:var(--violet);border:0.5px solid var(--violet);border-radius:7px;padding:6px 12px;font-size:11.5px;font-weight:600;text-decoration:none;margin-bottom:10px">▶ Grabación S3 (60 min)</a>
+      <div class="week-sec">Cerrado en S3 <span class="check">✓</span></div>
       <div class="week-text"><ul>
-        <li>Verificar que los 4 gates estén en verde: shipping, reviews, PDP+tracking, 15 estáticos</li>
-        <li>Confirmar campañas Meta ON con budget dentro de guardrails ($5/u · $7K/mes)</li>
-        <li>Primera lectura de data: CAC real vs techo por producto</li>
-        <li>Revisar avance Klaviyo, atribución y Google Merchant</li>
-        <li>Estado checkout con tasa sesión → carrito → pago con número real</li>
+        <li><span class="check">✓</span> Welcome Series activo: <strong>~$939 USD en 5 días</strong> · 56 suscriptores · $16,8/suscriptor · sin campañas prendidas</li>
+        <li><span class="check">✓</span> Delays de carrito ajustados: 10 min → 2h → 24h@10am (antes 10min/23h/2 días)</li>
+        <li><span class="check">✓</span> Browse Abandonment separado (1h) del Cart (10 min) por diferencia de intención</li>
+        <li><span class="check">✓</span> A/B test de subject activo: "you left something" vs "your free US shipping is still waiting"</li>
+        <li><span class="check">✓</span> Diagnóstico central: cuello de botella en el pop-up (submit rate 0,54% vs objetivo 5–10%)</li>
+        <li><span class="check">✓</span> Regla CEO actualizada: de -$5/u a -$7.000/mes total (presupuesto de lanzamiento)</li>
       </ul></div>
-      <div class="week-sec">📝 Entregable</div>
-      <div class="week-text">Campañas corriendo + primera lectura CAC real vs techo + checkout medido. Decisión de mantener, ajustar o frenar según data.</div>
+      <div class="week-sec">Accionables Kathe post-S3 <span class="pend">●</span></div>
+      <div class="week-text"><ul>
+        <li>Pop-up: agregar imagen, mover a la izquierda, testear oferta $5 vs 15%</li>
+        <li>Activar UTM Tracking + Custom Tracking en Klaviyo</li>
+        <li>Renombrar segmento "Welcome" → "Newsletter"</li>
+        <li>Instalar Clarity sobre top 10 de productos</li>
+        <li>Llevar Welcome de 1 correo a 3 (split por abrió / no abrió)</li>
+        <li>Diagnosticar caída de Add to Cart MoM (6,22% → 3,11%)</li>
+      </ul></div>
     </div>
   </div>
 
-  <div class="slbl">Próximas sesiones</div>
-  <div class="rm-uc-grid">
-    <div class="rm-uc"><div class="rm-uc-num">S4</div><div class="rm-uc-title">Validación + decisión mes 2</div><div class="rm-uc-chips"><span class="bdg grey">Checkpoints</span><span class="bdg grey">Propuesta email</span></div></div>
-    <div class="rm-uc"><div class="rm-uc-num">Mes 2–3 · Condicional</div><div class="rm-uc-title">Email + Brand Demand / Growth Partner</div><div class="rm-uc-chips"><span class="bdg grey">Implementación</span><span class="bdg grey">% de venta</span></div></div>
+  <div class="week-card done" onclick="toggleCard(this)">
+    <div class="week-hd">
+      <div class="week-info">
+        <div class="week-title">S4 — Validación del mes + conversación de continuidad</div>
+        <div class="week-date">Miércoles 22/07 · 60 min · con Kathe</div>
+      </div>
+      <span class="bdg teal">✓</span>
+    </div>
+    <div class="week-toggle"><span class="week-toggle-icon">▼</span> Ver detalle</div>
+    <div class="week-body">
+      <div class="week-chips"><span class="bdg teal">$4,900 email+popup ✓</span><span class="bdg teal">7K clicks Google ✓</span><span class="bdg teal">Mes 1 cerrado ✓</span></div>
+      <a href="https://fathom.video/share/ucc1VeSw5S1LxWyj91xRQixF_FN8H3yF" target="_blank" onclick="event.stopPropagation()" style="display:inline-flex;align-items:center;gap:6px;background:var(--violet-lt);color:var(--violet);border:0.5px solid var(--violet);border-radius:7px;padding:6px 12px;font-size:11.5px;font-weight:600;text-decoration:none;margin-bottom:10px">▶ Grabación S4 (60 min)</a>
+      <div class="week-sec">Números del mes completo</div>
+      <div class="week-text"><ul>
+        <li><span class="check">✓</span> Email + pop-up: <strong>$4,900 USD</strong> en ~15 días · sin campañas prendidas</li>
+        <li><span class="check">✓</span> Google Merchant Center: <strong>7,000 clicks orgánicos</strong> en 12 días · 17 compras atribuidas · sin invertir en ads</li>
+        <li><span class="check">✓</span> Google Ads Search: activado el 21/07 · Meta Ads activándose esta semana</li>
+        <li><span class="check">✓</span> Submit rate pop-up: 67 de 16,000 vistas (~0,41%) · tráfico mayormente desktop</li>
+        <li><span class="check">✓</span> Carritos abandonados: aún en $0 recuperado — volumen insuficiente todavía</li>
+      </ul></div>
+      <div class="week-sec">Cerrado en S4 <span class="check">✓</span></div>
+      <div class="week-text"><ul>
+        <li><span class="check">✓</span> Revisión completa de Google Merchant Center: estructura de descuentos, reseñas, visibilidad de productos</li>
+        <li><span class="check">✓</span> Diagnóstico: productos necesitan descuento >5,5% para activar tachado verde en Shopping y reseñas de Google para competir</li>
+        <li><span class="check">✓</span> Kathe llegó habiendo ejecutado todo el roadmap — ya no pregunta qué hacer, valida criterio propio</li>
+        <li><span class="check">✓</span> Conversación de continuidad abierta: 3 meses · $1.500 USD · decisión pendiente del cierre con Ori</li>
+      </ul></div>
+    </div>
   </div>
 </div>
 
@@ -1083,6 +1208,158 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--ink);font
 </div>
 
 
+<!-- ════════ NEXT STEPS ════════ -->
+<div class="page" id="pg-nextsteps">
+
+  <!-- HERO -->
+  <div style="background:var(--dark);border-radius:16px;padding:28px 24px;margin-bottom:20px;text-align:center">
+    <div style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:12px">Mes 1 completado · 4/4 sesiones</div>
+    <div style="font-size:22px;font-weight:600;color:#fff;line-height:1.3;margin-bottom:8px">El MVP terminó.<br>Ahora viene lo que escala.</div>
+    <div style="font-size:13px;color:rgba(255,255,255,.5);line-height:1.6;max-width:520px;margin:0 auto">En 4 semanas instalamos un canal de email desde cero, definimos la economía de cada producto y detectaste el cuello de botella real del funnel — todo ejecutado por vos, con criterio propio.</div>
+  </div>
+
+  <!-- RESULTADO DEL MES -->
+  <div class="slbl">Lo que se logró en 1 mes</div>
+  <div class="ov-row1" style="margin-bottom:10px">
+    <div class="ov-card">
+      <div class="ov-lbl">Email + pop-up · mes 1</div>
+      <div class="ov-num teal">$4,900</div>
+      <div class="ov-sub">en ~15 días · sin campañas prendidas</div>
+    </div>
+    <div class="ov-card">
+      <div class="ov-lbl">Google Shopping orgánico</div>
+      <div class="ov-num violet">7,000</div>
+      <div class="ov-sub">clicks en 12 días · 17 compras · $0 en ads</div>
+    </div>
+    <div class="ov-card">
+      <div class="ov-lbl">Canales nuevos</div>
+      <div class="ov-num teal">3</div>
+      <div class="ov-sub">Email · pop-up · Google Shopping</div>
+    </div>
+  </div>
+  <div class="ov-row2" style="margin-bottom:20px">
+    <div class="ov-card">
+      <div class="ov-lbl">Unit economics</div>
+      <div class="ov-num teal">✓</div>
+      <div class="ov-sub">Shopify CM ~3x Amazon · techo CAC definido</div>
+    </div>
+    <div class="ov-card">
+      <div class="ov-lbl">Klaviyo flows</div>
+      <div class="ov-num teal">✓</div>
+      <div class="ov-sub">Cart · Browse · A/B test activos</div>
+    </div>
+    <div class="ov-card">
+      <div class="ov-lbl">Revenue por suscriptor</div>
+      <div class="ov-num teal">$16,8</div>
+      <div class="ov-sub">Welcome Series · 40% open rate · 56 subs</div>
+    </div>
+    <div class="ov-card">
+      <div class="ov-lbl">Nivel de ejecución</div>
+      <div class="ov-num teal">5/5</div>
+      <div class="ov-sub">ejecutaste todo lo acordado en cada sesión</div>
+    </div>
+  </div>
+
+  <!-- PROPUESTA -->
+  <div class="slbl">La propuesta · lo que sigue</div>
+
+  <!-- PRICE CARD -->
+  <div style="background:var(--surf);border:1.5px solid var(--warm);border-radius:16px;padding:24px;margin-bottom:16px;position:relative;overflow:hidden">
+    <div style="position:absolute;top:0;right:0;background:var(--warm);color:#fff;font-size:10px;font-weight:700;font-family:'DM Mono',monospace;letter-spacing:.1em;padding:5px 14px;border-bottom-left-radius:10px">PRECIO ESPECIAL</div>
+    <div style="display:flex;align-items:flex-end;gap:12px;margin-bottom:6px;flex-wrap:wrap">
+      <div>
+        <div style="font-size:13px;color:var(--grey);text-decoration:line-through;margin-bottom:2px">$2.000 USD</div>
+        <div style="font-size:38px;font-weight:700;color:var(--warm);line-height:1">$1.500 <span style="font-size:16px;font-weight:500;color:var(--grey)">USD</span></div>
+      </div>
+      <div style="margin-bottom:6px">
+        <span class="bdg teal" style="font-size:12px;padding:4px 12px">Ahorrás $500</span>
+      </div>
+    </div>
+    <div style="font-size:13.5px;font-weight:600;color:var(--dark);margin-bottom:4px">3 meses · acompañamiento semanal · foco founder</div>
+    <div style="font-size:12px;color:var(--grey)">1 sesión por semana · documentación y sistemas incluidos · sin contrato mensual</div>
+
+    <!-- TIMER -->
+    <div style="background:var(--beige);border-radius:10px;padding:14px 16px;margin:16px 0;display:flex;align-items:center;gap:12px;flex-wrap:wrap">
+      <div style="font-size:20px">⏱</div>
+      <div style="flex:1;min-width:0">
+        <div style="font-size:12px;font-weight:600;color:var(--dark);margin-bottom:2px">Precio especial disponible mientras conversamos</div>
+        <div style="font-size:11px;color:var(--grey)">Después de esta semana vuelve a $2.000 USD. No hay descuento acumulable.</div>
+      </div>
+      <div id="ns-timer" style="font-family:'DM Mono',monospace;font-size:18px;font-weight:700;color:var(--warm);flex-shrink:0;min-width:80px;text-align:right">--:--:--</div>
+    </div>
+
+    <!-- PAYMENT BUTTON -->
+    <a href="https://wise.com/pay/r/SwZFPyNnw1eI8ZM" target="_blank" style="display:flex;align-items:center;justify-content:center;gap:10px;background:var(--warm);color:#fff;border-radius:12px;padding:16px 24px;font-size:15px;font-weight:700;text-decoration:none;transition:opacity .2s;margin-top:4px" onmouseover="this.style.opacity='.88'" onmouseout="this.style.opacity='1'">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+      Confirmar continuidad · $1.500 USD
+    </a>
+    <div style="text-align:center;font-size:10.5px;color:var(--grey);margin-top:8px">Pago seguro vía Wise · link directo · sin redireccionamientos</div>
+  </div>
+
+  <!-- QUÉ INCLUYE -->
+  <div class="slbl">Qué incluyen los 3 meses</div>
+  <div class="bn-grid" style="margin-bottom:20px">
+    <div class="bn-card i">
+      <div class="bn-head"><div class="bn-n i">✓</div><div class="bn-title">Skills validadas en tu contexto</div></div>
+      <div class="bn-text">No frameworks genéricos. Lo que aplicamos parte de lo que ya funciona para vos: Sabrent como caso base, GMDS como siguiente frente.</div>
+    </div>
+    <div class="bn-card i">
+      <div class="bn-head"><div class="bn-n i">✓</div><div class="bn-title">Sistemas Comercial · Marketing · Ops</div></div>
+      <div class="bn-text">Outbound, generación de contenido, procesos internos de agencia. Del operar proyectos al captar clientes en escala.</div>
+    </div>
+    <div class="bn-card i">
+      <div class="bn-head"><div class="bn-n i">✓</div><div class="bn-title">Acompañamiento semanal</div></div>
+      <div class="bn-text">1 sesión por semana. Cada semana cierra con próximos pasos claros — igual que este mes, pero con horizonte de 12 semanas.</div>
+    </div>
+    <div class="bn-card i">
+      <div class="bn-head"><div class="bn-n i">✓</div><div class="bn-title">Documentación y casos validados</div></div>
+      <div class="bn-text">Todo lo que funciona queda en Notion. Al final del programa tenés un sistema que no depende de que yo esté.</div>
+    </div>
+    <div class="bn-card i">
+      <div class="bn-head"><div class="bn-n i">✓</div><div class="bn-title">Consultoría técnica en procesos y equipo</div></div>
+      <div class="bn-text">Cómo estructurar equipos chicos, delegar sin perder calidad, y qué automatizar con AI para liberar tu tiempo de operación.</div>
+    </div>
+    <div class="bn-card i">
+      <div class="bn-head"><div class="bn-n i">✓</div><div class="bn-title">Sistemas de Growth con AI</div></div>
+      <div class="bn-text">Implemento sistemas que ya usan founders que venden más. No herramientas por usar herramientas — sistemas que generan tracción.</div>
+    </div>
+  </div>
+
+  <!-- POR QUÉ AHORA -->
+  <div class="alert-box warn" style="margin-bottom:16px">
+    <span class="alert-icon">⚡</span>
+    <div>
+      <div class="alert-title">Por qué tiene sentido continuar ahora</div>
+      <div class="alert-text">El mes 1 dejó el canal de email generando, la economía de productos clara y el cuello de botella identificado. Parar acá es como construir los cimientos y no levantar la casa. Los próximos 3 meses son para escalar lo que funciona y construir los sistemas que hacen crecer GMDS sin que vos estés en todo.</div>
+    </div>
+  </div>
+
+  <div class="alert-box info" style="margin-bottom:20px">
+    <span class="alert-icon">🎯</span>
+    <div>
+      <div class="alert-title">El objetivo de los 3 meses va más allá de Sabrent</div>
+      <div class="alert-text">Tu visión es GMDS como agencia global. Outbound propio, contenido que capta clientes, sistemas internos para operar sin apagar incendios. Eso se construye en 3 meses con foco — no se improvisa semana a semana.</div>
+    </div>
+  </div>
+
+  <!-- CTA FINAL -->
+  <div style="background:var(--dark);border-radius:16px;padding:24px;text-align:center">
+    <div style="font-size:15px;font-weight:600;color:#fff;margin-bottom:6px">¿Seguimos?</div>
+    <div style="font-size:12px;color:rgba(255,255,255,.45);margin-bottom:20px;line-height:1.6">Si tenés dudas antes de confirmar, escribime directo.<br>Si ya lo decidiste, el link de abajo lo activa todo.</div>
+    <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
+      <a href="https://wise.com/pay/r/SwZFPyNnw1eI8ZM" target="_blank" style="display:inline-flex;align-items:center;gap:8px;background:var(--warm);color:#fff;border-radius:10px;padding:13px 22px;font-size:14px;font-weight:700;text-decoration:none">
+        💳 Confirmar · $1.500 USD
+      </a>
+      <a href="https://wa.me/56978048922?text=Patricio%20quiero%20seguir%20con%20los%203%20meses" target="_blank" style="display:inline-flex;align-items:center;gap:8px;background:var(--wa);color:#fff;border-radius:10px;padding:13px 22px;font-size:14px;font-weight:700;text-decoration:none">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12.005 2.001C6.474 2.001 2 6.476 2 12.007c0 1.771.462 3.463 1.338 4.952L2 22l5.188-1.359A9.944 9.944 0 0 0 12.005 22c5.531 0 10.005-4.476 10.005-10.007 0-2.674-1.041-5.188-2.931-7.079A9.953 9.953 0 0 0 12.005 2z"/></svg>
+        Escribime antes
+      </a>
+    </div>
+  </div>
+
+</div>
+
+
 <!-- WA FAB -->
 <a class="wa-fab" href="https://wa.me/56978048922?text=Patricio%20tengo%20dudas%20sobre..." target="_blank" aria-label="WhatsApp">
   <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12.005 2.001C6.474 2.001 2 6.476 2 12.007c0 1.771.462 3.463 1.338 4.952L2 22l5.188-1.359A9.944 9.944 0 0 0 12.005 22c5.531 0 10.005-4.476 10.005-10.007 0-2.674-1.041-5.188-2.931-7.079A9.953 9.953 0 0 0 12.005 2z"/></svg>
@@ -1090,7 +1367,23 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--ink);font
 </a>
 
 <script>
-const PAGES=['overview','roadmap','engine','economics'];
+const PAGES=['overview','roadmap','engine','economics','nextsteps'];
+// Timer — deadline viernes 25/07 23:59 (precio especial esta semana)
+(function(){
+  const end=new Date('2026-07-25T23:59:00');
+  function tick(){
+    const diff=end-new Date();
+    const el=document.getElementById('ns-timer');
+    if(!el)return;
+    if(diff<=0){el.textContent='Venció';el.style.color='var(--red)';return;}
+    const h=Math.floor(diff/3600000);
+    const m=Math.floor((diff%3600000)/60000);
+    const s=Math.floor((diff%60000)/1000);
+    el.textContent=h+'h '+String(m).padStart(2,'0')+'m '+String(s).padStart(2,'0')+'s';
+    setTimeout(tick,1000);
+  }
+  tick();
+})();
 function sw(id,el,isMob){
   document.querySelectorAll('.page').forEach(p=>p.classList.remove('on'));
   document.querySelectorAll('.tab,.mob-row').forEach(t=>t.classList.remove('on'));
