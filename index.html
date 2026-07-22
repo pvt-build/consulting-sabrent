@@ -238,15 +238,15 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--ink);font
 .rm-uc-title{font-size:12px;font-weight:500;color:var(--ink);margin-bottom:5px;line-height:1.3}
 .rm-uc-chips{display:flex;flex-wrap:wrap;gap:3px}
 
-/* WA FAB */
-.wa-fab{position:fixed;bottom:22px;right:18px;z-index:400;display:flex;align-items:center;gap:8px;background:var(--wa);color:#fff;border-radius:50px;padding:11px 18px 11px 14px;font-size:13px;font-weight:600;box-shadow:0 4px 20px rgba(37,211,102,.3);text-decoration:none;transition:transform .2s,box-shadow .2s}
-.wa-fab:hover{transform:translateY(-2px);box-shadow:0 6px 28px rgba(37,211,102,.4)}
-.wa-fab svg{width:20px;height:20px;flex-shrink:0}
+/* WA INLINE */
+.wa-inline{display:flex;align-items:center;justify-content:center;gap:9px;background:var(--wa);color:#fff;border-radius:12px;padding:13px 20px;font-size:14px;font-weight:600;text-decoration:none;margin-top:28px;transition:opacity .2s}
+.wa-inline:hover{opacity:.88}
+.wa-inline svg{width:20px;height:20px;flex-shrink:0}
 
 /* RESPONSIVE */
 @media(min-width:681px){.tabs-desktop{display:flex}.mob-btn{display:none}.mob-drop{display:none!important}}
 @media(max-width:680px){
-  body{font-size:15px;padding-bottom:88px}
+  body{font-size:15px;padding-bottom:40px}
   .tabs-desktop{display:none}.mob-btn{display:flex}
   .topbar{padding:0 12px}
   .ext-bar{display:flex;margin-left:0;border-left:none;gap:2px}
@@ -273,7 +273,12 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--ink);font
   .eng-table td:nth-child(3){margin-bottom:8px}
   .eng-table td:nth-child(4)::before{content:"Situación: ";font-weight:600;color:var(--ink)}
   .eng-table td:nth-child(5)::before{content:"Cuándo: ";font-weight:600;color:var(--ink)}
-  .wa-fab{bottom:14px;left:14px;right:14px;width:auto;max-width:calc(100% - 28px);justify-content:center;border-radius:14px;padding:13px 18px;font-size:14px}
+  /* Evolución track — scroll horizontal en móvil */
+  .evo-track-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:0 -15px;padding:0 15px 8px}
+  .evo-track-inner{min-width:560px}
+  /* Antes/Ahora — stack vertical en móvil */
+  .evo-ba-grid{grid-template-columns:1fr !important}
+  .evo-ba-arrow{display:none !important}
 }
 </style>
 </head>
@@ -427,6 +432,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--ink);font
     <div style="font-size:11px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.28);margin-bottom:24px">Así se refleja el ecosistema · 4 sesiones · 1 mes</div>
 
     <!-- Track de niveles -->
+    <div class="evo-track-wrap"><div class="evo-track-inner">
     <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:0;position:relative;margin-bottom:28px">
 
       <!-- Línea conectora de fondo -->
@@ -466,12 +472,13 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--ink);font
       </div>
 
     </div>
+    </div></div><!-- /evo-track-inner /evo-track-wrap -->
 
     <!-- Divisor -->
     <div style="border-top:0.5px solid rgba(255,255,255,.08);margin-bottom:20px"></div>
 
     <!-- Antes vs Ahora -->
-    <div style="display:grid;grid-template-columns:1fr auto 1fr;gap:16px;align-items:start">
+    <div class="evo-ba-grid" style="display:grid;grid-template-columns:1fr auto 1fr;gap:16px;align-items:start">
 
       <!-- Antes -->
       <div>
@@ -485,7 +492,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--ink);font
       </div>
 
       <!-- Flecha -->
-      <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;padding-top:24px">
+      <div class="evo-ba-arrow" style="display:flex;flex-direction:column;align-items:center;justify-content:center;padding-top:24px">
         <svg width="32" height="16" viewBox="0 0 32 16" fill="none"><path d="M0 8h28M22 2l8 6-8 6" stroke="var(--teal)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
         <div style="font-size:9px;color:rgba(255,255,255,.2);margin-top:6px;letter-spacing:.08em;text-transform:uppercase">30 días</div>
       </div>
@@ -510,6 +517,11 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--ink);font
     </div>
 
   </div>
+
+  <a class="wa-inline" href="https://wa.me/56978048922?text=Patricio%20tengo%20dudas%20sobre%20el%20panel" target="_blank">
+    <svg viewBox="0 0 24 24" fill="currentColor" style="width:20px;height:20px;flex-shrink:0"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12.005 2.001C6.474 2.001 2 6.476 2 12.007c0 1.771.462 3.463 1.338 4.952L2 22l5.188-1.359A9.944 9.944 0 0 0 12.005 22c5.531 0 10.005-4.476 10.005-10.007 0-2.674-1.041-5.188-2.931-7.079A9.953 9.953 0 0 0 12.005 2z"/></svg>
+    Consultar a Patricio
+  </a>
 </div>
 
 
@@ -703,6 +715,11 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--ink);font
       </ul></div>
     </div>
   </div>
+
+  <a class="wa-inline" href="https://wa.me/56978048922?text=Patricio%20tengo%20dudas%20sobre%20el%20panel" target="_blank">
+    <svg viewBox="0 0 24 24" fill="currentColor" style="width:20px;height:20px;flex-shrink:0"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12.005 2.001C6.474 2.001 2 6.476 2 12.007c0 1.771.462 3.463 1.338 4.952L2 22l5.188-1.359A9.944 9.944 0 0 0 12.005 22c5.531 0 10.005-4.476 10.005-10.007 0-2.674-1.041-5.188-2.931-7.079A9.953 9.953 0 0 0 12.005 2z"/></svg>
+    Consultar a Patricio
+  </a>
 </div>
 
 
@@ -855,6 +872,11 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--ink);font
       <div class="alert-text">El objetivo de Sabrent no es que los clientes dejen de comprar en Amazon. Es que cuando lleguen a Amazon, <strong>ya sepan que quieren comprar Sabrent</strong>. Si el canal propio construye esa preferencia con contenido, educación, kits y experiencia de marca, Amazon deja de ser solo un canal que consume presupuesto y pasa a capturar demanda previamente creada. El resultado esperado no es solo vender más en Shopify: es mejorar la rentabilidad total del ecosistema.</div>
     </div>
   </div>
+
+  <a class="wa-inline" href="https://wa.me/56978048922?text=Patricio%20tengo%20dudas%20sobre%20el%20panel" target="_blank">
+    <svg viewBox="0 0 24 24" fill="currentColor" style="width:20px;height:20px;flex-shrink:0"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12.005 2.001C6.474 2.001 2 6.476 2 12.007c0 1.771.462 3.463 1.338 4.952L2 22l5.188-1.359A9.944 9.944 0 0 0 12.005 22c5.531 0 10.005-4.476 10.005-10.007 0-2.674-1.041-5.188-2.931-7.079A9.953 9.953 0 0 0 12.005 2z"/></svg>
+    Consultar a Patricio
+  </a>
 </div>
 
 
@@ -1206,6 +1228,11 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--ink);font
     </table>
   </div>
 
+
+  <a class="wa-inline" href="https://wa.me/56978048922?text=Patricio%20tengo%20dudas%20sobre%20el%20panel" target="_blank">
+    <svg viewBox="0 0 24 24" fill="currentColor" style="width:20px;height:20px;flex-shrink:0"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12.005 2.001C6.474 2.001 2 6.476 2 12.007c0 1.771.462 3.463 1.338 4.952L2 22l5.188-1.359A9.944 9.944 0 0 0 12.005 22c5.531 0 10.005-4.476 10.005-10.007 0-2.674-1.041-5.188-2.931-7.079A9.953 9.953 0 0 0 12.005 2z"/></svg>
+    Consultar a Patricio
+  </a>
 </div>
 
 
@@ -1375,14 +1402,14 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--ink);font
     </div>
   </div>
 
+
+  <a class="wa-inline" href="https://wa.me/56978048922?text=Patricio%20tengo%20dudas%20sobre%20el%20panel" target="_blank">
+    <svg viewBox="0 0 24 24" fill="currentColor" style="width:20px;height:20px;flex-shrink:0"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12.005 2.001C6.474 2.001 2 6.476 2 12.007c0 1.771.462 3.463 1.338 4.952L2 22l5.188-1.359A9.944 9.944 0 0 0 12.005 22c5.531 0 10.005-4.476 10.005-10.007 0-2.674-1.041-5.188-2.931-7.079A9.953 9.953 0 0 0 12.005 2z"/></svg>
+    Consultar a Patricio
+  </a>
 </div>
 
 
-<!-- WA FAB -->
-<a class="wa-fab" href="https://wa.me/56978048922?text=Patricio%20tengo%20dudas%20sobre..." target="_blank" aria-label="WhatsApp">
-  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12.005 2.001C6.474 2.001 2 6.476 2 12.007c0 1.771.462 3.463 1.338 4.952L2 22l5.188-1.359A9.944 9.944 0 0 0 12.005 22c5.531 0 10.005-4.476 10.005-10.007 0-2.674-1.041-5.188-2.931-7.079A9.953 9.953 0 0 0 12.005 2z"/></svg>
-  <span>Consultar</span>
-</a>
 
 <script>
 const PAGES=['overview','roadmap','engine','economics','nextsteps'];
