@@ -246,6 +246,9 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--ink);font
 /* RESPONSIVE */
 @media(min-width:681px){.tabs-desktop{display:flex}.mob-btn{display:none}.mob-drop{display:none!important}}
 @media(max-width:680px){
+  #pg-private .ov-row1,#pg-private [style*="grid-template-columns:1fr 1fr"]{grid-template-columns:1fr!important}
+  #pg-private [style*="grid-template-columns:repeat(3"]{grid-template-columns:1fr!important}
+
   body{font-size:15px;padding-bottom:40px}
   .tabs-desktop{display:none}.mob-btn{display:flex}
   .topbar{padding:0 12px}
@@ -275,7 +278,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--ink);font
   .eng-table td:nth-child(5)::before{content:"Cuándo: ";font-weight:600;color:var(--ink)}
   /* Evolución track — scroll horizontal en móvil */
   .evo-track-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:0 -15px;padding:0 15px 8px}
-  .evo-track-inner{min-width:560px}
+  .evo-track-inner{min-width:700px}
   /* Antes/Ahora — stack vertical en móvil */
   .evo-ba-grid{grid-template-columns:1fr !important}
   .evo-ba-arrow{display:none !important}
@@ -293,6 +296,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--ink);font
     <div class="tab" onclick="sw('engine',this)">⚙️ Growth Engine</div>
     <div class="tab" onclick="sw('economics',this)">📊 Profit Matrix</div>
     <div class="tab" onclick="sw('nextsteps',this)" style="color:var(--warm);font-weight:600">💡 Next Steps</div>
+    <div class="tab" onclick="sw('private',this)" style="color:var(--gold);font-weight:600;border-left:1px solid rgba(255,255,255,.1)">🔑 Horizonte</div>
   </nav>
   <div class="topbar-right">
     <div class="ext-bar">
@@ -319,6 +323,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--ink);font
     <div class="mob-row" onclick="sw('engine',this,true)"><span class="mob-em">⚙️</span> Growth Engine</div>
     <div class="mob-row" onclick="sw('economics',this,true)"><span class="mob-em">📊</span> Profit Matrix</div>
     <div class="mob-row" onclick="sw('nextsteps',this,true)" style="color:var(--warm);font-weight:600"><span class="mob-em">💡</span> Next Steps</div>
+    <div class="mob-row" onclick="sw('private',this,true)" style="color:var(--gold);font-weight:600;border-top:0.5px solid rgba(255,255,255,.12)"><span class="mob-em">🔑</span> Horizonte</div>
   </div>
 </header>
 
@@ -326,14 +331,14 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--ink);font
 <!-- ════════ PANEL ════════ -->
 <div class="page on" id="pg-overview">
 
-  <div class="slbl">Progreso — Mes 2 en curso · S5 de 8 · Programa 03/07 → 03/10</div>
+  <div class="slbl">Progreso — Mes 2 en curso · S6 de 8 · Programa 03/07 → 03/10</div>
   <div class="chips-row">
     <div class="sch done">S1</div>
     <div class="sch done">S2</div>
     <div class="sch done">S3</div>
     <div class="sch done">S4</div>
-    <div class="sch now">S5</div>
-    <div class="sch todo">S6</div>
+    <div class="sch done">S5</div>
+    <div class="sch now">S6</div>
     <div class="sch todo">S7</div>
     <div class="sch todo">S8</div>
   </div>
@@ -475,12 +480,20 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--ink);font
         <div style="margin-top:10px;font-size:11px;color:rgba(255,255,255,.38);text-align:center;font-style:italic;line-height:1.5;max-width:130px">"¿Qué sigue más allá de Sabrent?"</div>
       </div>
 
-      <!-- S5 → now -->
+      <!-- S5 → done -->
       <div style="display:flex;flex-direction:column;align-items:center;gap:0;position:relative;z-index:2">
-        <div style="width:56px;height:56px;border-radius:50%;background:var(--gold);display:flex;align-items:center;justify-content:center;font-family:'DM Mono',monospace;font-size:13px;font-weight:500;color:#fff;border:3px solid var(--dark);box-shadow:0 0 0 2px var(--gold)">S5</div>
+        <div style="width:56px;height:56px;border-radius:50%;background:var(--teal);display:flex;align-items:center;justify-content:center;font-family:'DM Mono',monospace;font-size:13px;font-weight:500;color:#fff;border:3px solid var(--dark);box-shadow:0 0 0 2px var(--teal)">S5</div>
         <div style="margin-top:12px;font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.1em;color:rgba(255,255,255,.3);text-align:center">04 Ago</div>
-        <div style="margin-top:8px;background:rgba(232,162,55,.15);border:0.5px solid rgba(232,162,55,.4);border-radius:20px;padding:3px 10px;font-size:10px;font-weight:500;color:var(--gold);text-align:center;white-space:nowrap">🚀 Acquisition ON</div>
+        <div style="margin-top:8px;background:rgba(62,180,137,.12);border:0.5px solid rgba(62,180,137,.3);border-radius:20px;padding:3px 10px;font-size:10px;font-weight:500;color:var(--teal);text-align:center;white-space:nowrap">🚀 Acquisition ON</div>
         <div style="margin-top:10px;font-size:11px;color:rgba(255,255,255,.38);text-align:center;font-style:italic;line-height:1.5;max-width:130px">"Mes 2 · ya no opero, vendo"</div>
+      </div>
+
+      <!-- S6 → now -->
+      <div style="display:flex;flex-direction:column;align-items:center;gap:0;position:relative;z-index:2">
+        <div style="width:56px;height:56px;border-radius:50%;background:var(--gold);display:flex;align-items:center;justify-content:center;font-family:'DM Mono',monospace;font-size:13px;font-weight:500;color:#fff;border:3px solid var(--dark);box-shadow:0 0 0 2px var(--gold)">S6</div>
+        <div style="margin-top:12px;font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.1em;color:rgba(255,255,255,.3);text-align:center">11 Ago</div>
+        <div style="margin-top:8px;background:rgba(232,162,55,.15);border:0.5px solid rgba(232,162,55,.4);border-radius:20px;padding:3px 10px;font-size:10px;font-weight:500;color:var(--gold);text-align:center;white-space:nowrap">🧭 Dónde está el valor</div>
+        <div style="margin-top:10px;font-size:11px;color:rgba(255,255,255,.38);text-align:center;font-style:italic;line-height:1.5;max-width:130px">"No está en los $262 — está en el engine"</div>
       </div>
 
     </div>
@@ -529,6 +542,44 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--ink);font
     </div>
 
   </div>
+
+  <!-- S6 -->
+  <div class="week-card now" onclick="toggleCard(this)">
+    <div class="week-hd">
+      <div class="week-info">
+        <div class="week-title">S6 — Dónde está el valor + filmmaker bottleneck</div>
+        <div class="week-date">Lunes 11/08 · 58 + 28 min · con Kathe</div>
+      </div>
+      <span class="bdg amber">En curso</span>
+    </div>
+    <div class="week-toggle"><span class="week-toggle-icon">▼</span> Ver detalle</div>
+    <div class="week-body">
+      <div class="week-chips"><span class="bdg teal">$10K / 10 días ✓</span><span class="bdg teal">$262 adspend</span><span class="bdg amber">Filmmaker ⚠</span></div>
+      <a href="https://fathom.video/share/DUknNfnM9DFnKNU5XoYowbxVb7HQV_rz" target="_blank" onclick="event.stopPropagation()" style="display:inline-flex;align-items:center;gap:6px;background:var(--violet-lt);color:var(--violet);border:0.5px solid var(--violet);border-radius:7px;padding:6px 12px;font-size:11.5px;font-weight:600;text-decoration:none;margin-bottom:6px">▶ Grabación S6 · pt.1 (58 min)</a>
+      <a href="https://fathom.video/share/3gN6cwwfBN2A1ZUzEJSWJRr7WYV98xZn" target="_blank" onclick="event.stopPropagation()" style="display:inline-flex;align-items:center;gap:6px;background:var(--violet-lt);color:var(--violet);border:0.5px solid var(--violet);border-radius:7px;padding:6px 12px;font-size:11.5px;font-weight:600;text-decoration:none;margin-bottom:10px">▶ Grabación S6 · pt.2 (28 min)</a>
+      <div class="week-sec">Métricas agosto · 10 días de campaña</div>
+      <div class="week-text"><ul>
+        <li><span class="check">✓</span> Total net revenue: <strong>$10,000 USD</strong> · adspend $262 · 10 días</li>
+        <li><span class="check">✓</span> Email marketing: mejor que el mes pasado · flows activos cerrando ventas</li>
+        <li><span class="check">✓</span> Google Organic + Ads activos · sin necesidad de video para seguir operando</li>
+        <li>⚠ Click cost alto en paid · filmmaker (Duvan) al tope de capacidad → cuello de botella activo</li>
+      </ul></div>
+      <div class="week-sec">Frame clave entregado en S6</div>
+      <div class="week-text">El valor de la consultoría <strong>no está en los $262 de adspend</strong> — está en el CRO, los email flows, las foundations y el growth engine. Eso generó $10K. Los ads sin video son un canal limitado pero los otros canales (email, Google, CRO) siguen siendo palancas que no dependen del filmmaker.</div>
+      <div class="week-sec">Accionables · Kathe <span class="pend">●</span></div>
+      <div class="week-text"><ul>
+        <li>☐ Llevar a Ori la conversación de filmmaker: "¿qué te da más leverage — quemar en ads sin video, o resolver el cuello?"</li>
+        <li>☐ Optimizar CRO en PDP de Blowzer mientras no haya nuevo video</li>
+        <li>☐ Seguir escalando email · activar próximo flow</li>
+      </ul></div>
+      <div class="week-sec">Accionables · Patricio <span class="pend">●</span></div>
+      <div class="week-text"><ul>
+        <li>☐ Seguimiento post-reunión Jason (cierre en curso)</li>
+        <li>☐ Definir con Kathe la conversación de filmmaker con Ori para S7</li>
+      </ul></div>
+    </div>
+  </div>
+
 
   <a class="wa-inline" href="https://wa.me/56978048922?text=Patricio%20tengo%20dudas%20sobre%20el%20panel" target="_blank">
     <svg viewBox="0 0 24 24" fill="currentColor" style="width:20px;height:20px;flex-shrink:0"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12.005 2.001C6.474 2.001 2 6.476 2 12.007c0 1.771.462 3.463 1.338 4.952L2 22l5.188-1.359A9.944 9.944 0 0 0 12.005 22c5.531 0 10.005-4.476 10.005-10.007 0-2.674-1.041-5.188-2.931-7.079A9.953 9.953 0 0 0 12.005 2z"/></svg>
@@ -729,13 +780,13 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--ink);font
   </div>
 
   <!-- S5 -->
-  <div class="week-card now" onclick="toggleCard(this)">
+  <div class="week-card done" onclick="toggleCard(this)">
     <div class="week-hd">
       <div class="week-info">
         <div class="week-title">S5 — Mes 2: acquisition framework + Blowzer plan</div>
         <div class="week-date">Lunes 04/08 · 60 min · con Kathe</div>
       </div>
-      <span class="bdg amber">En curso</span>
+      <span class="bdg teal">✓</span>
     </div>
     <div class="week-toggle"><span class="week-toggle-icon">▼</span> Ver detalle</div>
     <div class="week-body">
@@ -1294,7 +1345,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--ink);font
 
   <!-- HERO -->
   <div style="background:var(--dark);border-radius:16px;padding:28px 24px;margin-bottom:20px;text-align:center">
-    <div style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:12px">Mes 2 · Agosto · S5 de 8 · Cerrado ✓</div>
+    <div style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:12px">Mes 2 · Agosto · S6 de 8 · Activo</div>
     <div style="font-size:22px;font-weight:600;color:#fff;line-height:1.3;margin-bottom:8px">Foundation lista.<br>Ahora el foco es acquisition.</div>
     <div style="font-size:13px;color:rgba(255,255,255,.5);line-height:1.6;max-width:520px;margin:0 auto">Email generando $4,900, Google Shopping con 7K clicks, unit economics cerradas. Agosto arranca con un objetivo claro: 500 nuevos clientes con Blowzer X6 y la skill de cierre operando en paralelo.</div>
   </div>
@@ -1348,7 +1399,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--ink);font
     <div style="font-size:28px;flex-shrink:0">✅</div>
     <div>
       <div style="font-size:13.5px;font-weight:600;color:var(--teal-dk);margin-bottom:4px">Agosto cerrado · $550 USD · 4 llamadas</div>
-      <div style="font-size:12px;color:var(--teal-dk);opacity:.75;line-height:1.6">Programa extendido a 8 sesiones. S5 completada el 04/08. Foco: validar Blowzer X6 + definir alcance del servicio.</div>
+      <div style="font-size:12px;color:var(--teal-dk);opacity:.75;line-height:1.6">Programa extendido a 8 sesiones. S5 y S6 completadas. $10K en 10 días · foco: Blowzer + conversación filmmaker con Ori.</div>
     </div>
   </div>
 
@@ -1434,8 +1485,122 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--ink);font
 
 
 
+
+<!-- ════════ HORIZONTE · PRIVATE ════════ -->
+<div class="page" id="pg-private">
+
+  <!-- ESPEJO INICIAL -->
+  <div style="background:var(--dark);border-radius:16px;padding:32px 28px 28px;margin-bottom:20px;position:relative;overflow:hidden">
+    <div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--gold),var(--warm))"></div>
+    <div style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.35);margin-bottom:14px">Horizonte · Reflexión privada</div>
+    <div style="font-size:20px;font-weight:600;color:#fff;line-height:1.4;margin-bottom:10px">Tú ya sabés hacia dónde va esto.<br><span style="color:var(--gold)">La pregunta es cuándo lo dejas claro.</span></div>
+    <div style="font-size:13px;color:rgba(255,255,255,.5);line-height:1.7;max-width:560px">Sabrent es un capítulo. Lo que construiste ahí — el engine, los flows, el criterio de acquisition — es tuyo. Se queda. Lo que viene es diferente. Esta página es un espejo, no una propuesta.</div>
+  </div>
+
+  <!-- DOS CAMINOS -->
+  <div class="slbl">El contraste · dónde estás vs. dónde va la energía</div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:20px">
+
+    <div style="background:var(--red-lt);border:1px solid rgba(226,80,58,.2);border-radius:14px;padding:20px">
+      <div style="font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--red-dk);margin-bottom:12px">E-commerce · Dónde estás hoy</div>
+      <ul style="font-size:12px;color:var(--ink);line-height:2;padding-left:14px">
+        <li>Resultado depende del filmmaker de otro</li>
+        <li>Presión de adspend sobre resultados ajenos</li>
+        <li>Cada problema del cliente cae sobre ti</li>
+        <li>El SOP y los sistemas → tú los tenés que armar</li>
+        <li>Ticket fijo · escalabilidad limitada · margen presionado</li>
+        <li>Alta operación · baja decisión propia</li>
+      </ul>
+    </div>
+
+    <div style="background:var(--teal-lt);border:1px solid rgba(62,180,137,.25);border-radius:14px;padding:20px">
+      <div style="font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--teal-dk);margin-bottom:12px">Botes · Hacia dónde vas</div>
+      <ul style="font-size:12px;color:var(--ink);line-height:2;padding-left:14px">
+        <li>High ticket · una venta = meses de retainer</li>
+        <li>El resultado depende de <em>tu</em> closing</li>
+        <li>Network propio · no depende de referidos ajenos</li>
+        <li>Home field · ya sabés cómo funciona la industria</li>
+        <li>% de comisión · cada deal escala sin más operación</li>
+        <li>Alta decisión propia · baja operación directa</li>
+      </ul>
+    </div>
+
+  </div>
+
+  <!-- DOS SKILLS -->
+  <div class="slbl">Las dos skills que desbloquean el siguiente nivel</div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:20px">
+
+    <div style="background:var(--surf);border:1.5px solid var(--warm);border-radius:14px;padding:20px">
+      <div style="width:36px;height:36px;border-radius:8px;background:var(--warm);display:flex;align-items:center;justify-content:center;font-size:18px;margin-bottom:12px">🎯</div>
+      <div style="font-size:14px;font-weight:600;color:var(--dark);margin-bottom:6px">Closing de alto ticket</div>
+      <div style="font-size:12px;color:var(--grey);line-height:1.7">No objeciones de precio. Activar el dolor correcto, llevar al cliente a que él solo cierre. Ya lo sentiste con Jason — roleplay en tiempo real. Esa skill se entrena, se itera y se convierte en tu mayor palanca de cash.</div>
+      <div style="margin-top:12px;background:var(--beige);border-radius:8px;padding:10px;font-size:11px;color:var(--dark)">
+        <strong>Ya validado:</strong> GPT de Closing → 2 discovery calls en 24 horas. El muscle existe. Falta repetición sistemática.
+      </div>
+    </div>
+
+    <div style="background:var(--surf);border:1.5px solid var(--gold);border-radius:14px;padding:20px">
+      <div style="width:36px;height:36px;border-radius:8px;background:var(--gold);display:flex;align-items:center;justify-content:center;font-size:18px;margin-bottom:12px">🧭</div>
+      <div style="font-size:14px;font-weight:600;color:var(--dark);margin-bottom:6px">Decisión de founder</div>
+      <div style="font-size:12px;color:var(--grey);line-height:1.7">Qué absorber vs. qué delegar vs. qué rechazar. Cuándo un deal te da leverage vs. cuándo te drena. A qué avatar enfocarte. Esas decisiones definen si en 6 meses tenés 5 Sabrents o un Jason escalado.</div>
+      <div style="margin-top:12px;background:var(--beige);border-radius:8px;padding:10px;font-size:11px;color:var(--dark)">
+        <strong>La señal:</strong> Sabrent → cada problema cae sobre ti. Botes → tú cerrás, el cliente opera. Esa diferencia es decisión de founder.
+      </div>
+    </div>
+
+  </div>
+
+  <!-- LO QUE YA ESTÁ RESUELTO -->
+  <div style="background:var(--beige);border:0.5px solid var(--border);border-radius:14px;padding:18px 22px;margin-bottom:20px">
+    <div style="font-size:13px;font-weight:600;color:var(--dark);margin-bottom:10px">Lo que ya está resuelto · no es el problema</div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px">
+      <div style="text-align:center;padding:12px;background:var(--surf);border-radius:10px">
+        <div style="font-size:20px;margin-bottom:4px">⚙️</div>
+        <div style="font-size:11px;font-weight:600;color:var(--dark)">Operación</div>
+        <div style="font-size:10px;color:var(--grey);margin-top:4px">N8N · CRMs · flows · automatización → Claude lo resuelve</div>
+      </div>
+      <div style="text-align:center;padding:12px;background:var(--surf);border-radius:10px">
+        <div style="font-size:20px;margin-bottom:4px">📋</div>
+        <div style="font-size:11px;font-weight:600;color:var(--dark)">SOPs y delegación</div>
+        <div style="font-size:10px;color:var(--grey);margin-top:4px">Documentar, delegar, replicar → AI resuelve el 80%</div>
+      </div>
+      <div style="text-align:center;padding:12px;background:var(--surf);border-radius:10px">
+        <div style="font-size:20px;margin-bottom:4px">🛠️</div>
+        <div style="font-size:11px;font-weight:600;color:var(--dark)">Setup técnico</div>
+        <div style="font-size:10px;color:var(--grey);margin-top:4px">Klaviyo · Meta · Google · Shopify → ya lo sabés hacer</div>
+      </div>
+    </div>
+    <div style="font-size:12px;color:var(--grey);margin-top:12px;line-height:1.6">La operación no es el cuello. El cuello es la decisión de qué construir y la habilidad de cerrarlo. Eso no se automatiza — se entrena.</div>
+  </div>
+
+  <!-- LA LLAVE -->
+  <div style="background:var(--dark);border-radius:16px;padding:28px 24px;position:relative;overflow:hidden">
+    <div style="position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--gold),transparent)"></div>
+    <div style="font-size:16px;font-weight:600;color:#fff;margin-bottom:8px">Cuando estés lista · Private Build</div>
+    <div style="font-size:13px;color:rgba(255,255,255,.5);line-height:1.7;margin-bottom:20px;max-width:520px">No es un pitch. Es un sistema que ya validé en mí mismo — como founder que hace lo mismo que te estoy enseñando a vos. Closing, criterio de decisión, contenido que atrae sin depender de algoritmos. Lo que construí lo vendo porque funciona en mí primero.</div>
+    <div style="display:flex;gap:10px;flex-wrap:wrap">
+      <div style="background:rgba(232,162,55,.1);border:0.5px solid rgba(232,162,55,.3);border-radius:10px;padding:10px 16px;font-size:12px;color:var(--gold)">🎯 Closing system · cierres de alto ticket sin scripts robóticos</div>
+      <div style="background:rgba(232,162,55,.1);border:0.5px solid rgba(232,162,55,.3);border-radius:10px;padding:10px 16px;font-size:12px;color:var(--gold)">🧭 Decisión de founder · cuándo avanzar, cuándo soltar</div>
+      <div style="background:rgba(232,162,55,.1);border:0.5px solid rgba(232,162,55,.3);border-radius:10px;padding:10px 16px;font-size:12px;color:var(--gold)">📣 Contenido que atrae · sin depender de un filmmaker ajeno</div>
+    </div>
+    <div style="margin-top:20px;padding-top:16px;border-top:0.5px solid rgba(255,255,255,.08)">
+      <div style="font-size:12px;color:rgba(255,255,255,.4);margin-bottom:10px">La pregunta no es si necesitás esto. La pregunta es cuándo vas a priorizarlo.</div>
+      <a href="https://wa.me/56978048922?text=Patricio%2C%20quiero%20entender%20mejor%20c%C3%B3mo%20funciona%20Private%20Build%20para%20mi%20caso" target="_blank" style="display:inline-flex;align-items:center;gap:8px;background:var(--gold);color:#fff;border-radius:10px;padding:12px 20px;font-size:13px;font-weight:700;text-decoration:none">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12.005 2.001C6.474 2.001 2 6.476 2 12.007c0 1.771.462 3.463 1.338 4.952L2 22l5.188-1.359A9.944 9.944 0 0 0 12.005 22c5.531 0 10.005-4.476 10.005-10.007 0-2.674-1.041-5.188-2.931-7.079A9.953 9.953 0 0 0 12.005 2z"/></svg>
+        Conversemos
+      </a>
+    </div>
+  </div>
+
+  <a class="wa-inline" href="https://wa.me/56978048922?text=Patricio%20tengo%20dudas%20sobre%20el%20panel" target="_blank">
+    <svg viewBox="0 0 24 24" fill="currentColor" style="width:20px;height:20px;flex-shrink:0"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12.005 2.001C6.474 2.001 2 6.476 2 12.007c0 1.771.462 3.463 1.338 4.952L2 22l5.188-1.359A9.944 9.944 0 0 0 12.005 22c5.531 0 10.005-4.476 10.005-10.007 0-2.674-1.041-5.188-2.931-7.079A9.953 9.953 0 0 0 12.005 2z"/></svg>
+    Consultar a Patricio
+  </a>
+</div>
+
 <script>
-const PAGES=['overview','roadmap','engine','economics','nextsteps'];
+const PAGES=['overview','roadmap','engine','economics','nextsteps','private'];
 // Timer — deadline viernes 25/07 23:59 (precio especial esta semana)
 (function(){
   const end=new Date('2026-07-26T23:59:00');
